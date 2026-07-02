@@ -458,4 +458,49 @@ export const CASES = [
     links: [],
     relatedClauses: ["cl:lev-covenants", "cl:lev-mac"],
   },
+  {
+    id: "case:etridge",
+    type: "case",
+    title: "Royal Bank of Scotland plc v Etridge (No 2)",
+    citation: "[2001] UKHL 44",
+    court: "House of Lords",
+    date: "2001-10-11",
+    category: ["Security & guarantees"],
+    holding:
+      "Set out the framework for when a lender is put on inquiry that a surety's consent (classically a spouse charging the family home for the debtor's business) may have been procured by undue influence, and the steps a lender must take — ensuring the surety obtains independent legal advice — to avoid being fixed with constructive notice and losing its security.",
+    whyItMatters:
+      "The foundational authority (recently revisited in Waller-Edwards) for protecting a guarantee or third-party security from undue-influence challenge. It dictates how you paper independent legal advice for individual sureties.",
+    links: [],
+    relatedClauses: ["cl:sec-guarantee"],
+  },
+  {
+    id: "case:holme",
+    type: "case",
+    title: "Holme v Brunskill",
+    citation: "(1878) 3 QBD 495",
+    court: "Court of Appeal",
+    date: "1878-01-01",
+    category: ["Security & guarantees"],
+    holding:
+      "A material variation of the principal contract between creditor and debtor, made without the guarantor's consent, discharges the guarantor — unless the variation is self-evidently insubstantial or incapable of prejudicing the guarantor. The classic 'rule in Holme v Brunskill'.",
+    whyItMatters:
+      "The reason every modern guarantee contains extensive preservation / indulgence provisions deeming the guarantor not released by variations, waivers, time or other dealings with the principal. Know the rule to know why the boilerplate exists — and when it might still fail.",
+    links: [],
+    relatedClauses: ["cl:sec-guarantee"],
+  },
+  {
+    id: "case:urvasco",
+    type: "case",
+    title: "Grupo Hotelero Urvasco SA v Carey Value Added SL",
+    citation: "[2013] EWHC 1039 (Comm)",
+    court: "High Court (Comm)",
+    date: "2013-04-25",
+    category: ["Interpretation & MAC"],
+    holding:
+      "The leading English authority on material adverse change clauses in a loan. A MAC in a company's financial condition is assessed primarily by reference to its financial information; a lender cannot invoke a MAC on circumstances it knew about at signing; the change must be material and not merely temporary and must significantly affect the borrower's ability to perform; and the burden lies on the party asserting the MAC.",
+    whyItMatters:
+      "The case that tells you how hard a MAC is to invoke and how to draft and rely on one. Essential companion to the MAC clause and to Wood v Capita / Arnold v Britton on interpretation.",
+    links: [],
+    relatedClauses: ["cl:lev-mac"],
+  },
 ];

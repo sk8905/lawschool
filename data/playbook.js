@@ -127,7 +127,7 @@ export const CLAUSES = [
       "MAC is rarely successfully invoked and is disapplied during certain-funds. Its practical value is as leverage, not a reliable exit. Covid-era commentary reinforced how high the bar is to call a MAC.",
     draftingNotes:
       "Construed per Wood v Capita / Rainy Sky — the language bears real weight, so a vague MAC is close to unusable. If you need certainty, use specific financial-covenant triggers, not MAC.",
-    relatedCases: ["case:woodcapita", "case:rainysky"],
+    relatedCases: ["case:woodcapita", "case:rainysky", "case:urvasco"],
     relatedTasks: ["A2", "B5"],
   },
   {
@@ -603,7 +603,7 @@ export const CLAUSES = [
       "Watch undue influence where an individual guarantees for another's benefit (Waller-Edwards / Etridge — paper independent legal advice). Recovery against directors behind a guarantor is constrained by the accessory-liability line (Lifestyle Equities).",
     sample:
       "Each Guarantor irrevocably and unconditionally, jointly and severally, guarantees to each Finance Party the due and punctual performance by each other Obligor of its obligations under the Finance Documents and, as an independent and primary obligation, indemnifies each Finance Party against any loss arising from any such obligation being or becoming unenforceable, invalid or illegal.",
-    relatedCases: ["case:walleredwards", "case:lifestyle", "case:luxfilms"],
+    relatedCases: ["case:walleredwards", "case:etridge", "case:holme", "case:lifestyle", "case:luxfilms"],
     relatedTasks: ["B3", "B4"],
   },
 
@@ -1157,5 +1157,107 @@ export const CLAUSES = [
       "If an Obligor fails to pay any amount under a Finance Document on its due date, interest shall accrue on the overdue amount from the due date to the date of actual payment at a rate one per cent. (1%) per annum higher than the rate which would have applied had the overdue amount constituted a Loan during that period.",
     relatedCases: ["case:makdessi"],
     relatedTasks: ["A2", "B8"],
+  },
+
+  // ==== Boilerplate that does real work: CPs, reps, EoD, cure, information ====
+  {
+    id: "cl:lev-cp",
+    doc: "leveraged",
+    section: "Conditions precedent",
+    title: "Conditions precedent (CP list)",
+    purpose:
+      "The conditions precedent — corporate authorisations, legal opinions, KYC, financial statements, executed security and the funds flow — that must be satisfied (or waived) before drawdown. In acquisition finance these dovetail with certain funds.",
+    borrowerAsk:
+      "A short, objective CP list, documentary CPs deliverable 'in agreed form', KYC front-loaded, and no broad 'satisfactory to the Agent' discretion.",
+    lenderPushback:
+      "A comprehensive CP list, legal opinions in every obligor jurisdiction, all security executed with perfection underway, and confirmation of no default and repeating reps.",
+    marketPosition:
+      "A CP schedule (constitutional documents, board/shareholder resolutions, legal opinions, security documents, KYC, structure memo, funds flow) is standard; the 'agreed form' vs 'satisfactory to the Agent' formulation and the signing/closing CP split are negotiated.",
+    draftingNotes:
+      "In acquisition finance, separate CPs to the certain-funds utilisation (a limited, objective list) from general CPs. Agree forms of the key documents at signing to avoid closing-day risk.",
+    sample:
+      "The Borrower may not deliver a Utilisation Request unless the Agent has confirmed to the Borrower that it has received all of the documents and other evidence set out in Part I of Schedule 2 (Conditions Precedent) in form and substance satisfactory to it (acting reasonably).",
+    relatedCases: [],
+    relatedTasks: ["A4", "C3"],
+  },
+  {
+    id: "cl:lev-reps",
+    doc: "leveraged",
+    section: "Representations",
+    title: "Representations & warranties",
+    purpose:
+      "The representations — status, power, enforceability, no conflict, financial statements, no default, litigation, and (as relevant) title, sanctions and tax — given at signing and typically repeated on each utilisation and interest payment date.",
+    borrowerAsk:
+      "Materiality and knowledge qualifiers, a narrow set of repeating reps, reps given by reference to a disclosure letter, and no repetition of any 'no MAC' or forward-looking representation.",
+    lenderPushback:
+      "A full representation suite, repetition of key reps on each drawdown/rollover and IPD, and limited materiality/knowledge qualifiers on fundamental matters (status, authorisations, enforceability, ranking).",
+    marketPosition:
+      "The LMA representation suite, with 'Repeating Representations' repeated on each Utilisation Date and the first day of each Interest Period, is standard; which reps repeat, the qualifiers, and disclosure carve-outs are negotiated.",
+    draftingNotes:
+      "Define 'Repeating Representations' tightly — over-broad repetition (e.g. of a no-litigation or no-MAC rep) turns a rep breach into a drawstop or EoD. Coordinate with the certain-funds 'Major Representations'.",
+    sample:
+      "The Repeating Representations are deemed to be made by each Obligor on the date of each Utilisation Request, on the first day of each Interest Period and (for an Additional Obligor) on the date of its accession, in each case by reference to the facts and circumstances then existing.",
+    relatedCases: [],
+    relatedTasks: ["A2", "A4"],
+  },
+  {
+    id: "cl:lev-eod",
+    doc: "leveraged",
+    section: "Events of default",
+    title: "Events of default (the EoD suite)",
+    purpose:
+      "The events of default — non-payment, breach of financial covenant, breach of other obligations (with grace periods), misrepresentation, cross-default/acceleration, insolvency and insolvency proceedings, unlawfulness and (sometimes) MAC — that entitle lenders to accelerate and enforce.",
+    borrowerAsk:
+      "Grace/remedy periods and materiality thresholds, a high cross-default threshold (and cross-acceleration rather than mere cross-default), no MAC EoD, and cure rights for covenant breaches (equity cure).",
+    lenderPushback:
+      "Tight or no grace period for payment, a meaningful cross-default threshold, insolvency and unlawfulness EoDs without cure, and retention of a MAC event of default.",
+    marketPosition:
+      "The LMA EoD suite, with de-minimis/grace-period thresholds and cross-acceleration (not cross-default), is standard in leveraged; equity cure of the financial covenant and acquisition clean-up periods are market.",
+    draftingNotes:
+      "Cross-default vs cross-acceleration and its threshold is a key negotiation. Align the EoD suite with the equity-cure and clean-up provisions so integration hiccups don't trip an immediate default.",
+    sample:
+      "An Event of Default occurs if an Obligor does not pay on the due date any amount payable under a Finance Document, unless (in the case of a technical or administrative error, or a Disruption Event) payment is made within [three] Business Days of the due date.",
+    relatedCases: [],
+    relatedTasks: ["A2", "A3"],
+  },
+  {
+    id: "cl:lev-equitycure",
+    doc: "leveraged",
+    section: "Equity cure",
+    title: "Equity cure (mechanics)",
+    purpose:
+      "Lets the sponsor cure a breach of the financial covenant by injecting new equity (or subordinated shareholder debt), treated as increasing EBITDA (or reducing net debt) for the relevant period, so a breach does not become an event of default.",
+    borrowerAsk:
+      "Frequent cures, a deemed-EBITDA cure (not just debt paydown), cure applied to the covenant only (not baskets/ratchet), a long cure window, and over-cure permitted.",
+    lenderPushback:
+      "Caps on frequency (e.g. no more than two in any four quarters, not consecutive, plus a lifetime cap), cure applied to reduce net debt, no over-cure, and cured EBITDA disregarded for baskets and the margin ratchet.",
+    marketPosition:
+      "Equity cure of the leverage covenant is near-universal in sponsor deals, framed by 2-in-4/non-consecutive and lifetime caps; whether the cure counts as EBITDA or only reduces debt, and over-cure, are the live points.",
+    draftingNotes:
+      "The four points to pin down: EBITDA cure vs debt-paydown; over-cure; whether cured amounts flow into baskets/ratchet (they should not); and frequency/lifetime caps. Reconcile with the covenant and margin-ratchet clauses.",
+    sample:
+      "If the Financial Covenant is breached, the Sponsor may, within [15] Business Days of the date the relevant Compliance Certificate is (or should have been) delivered, inject Cure Amounts which shall be deemed to increase EBITDA for the relevant Relevant Period; no more than [two] cures may be made in any [four] consecutive Test Dates and not in consecutive Test Dates.",
+    relatedCases: [],
+    relatedTasks: ["A2", "A3"],
+  },
+  {
+    id: "cl:lev-info",
+    doc: "leveraged",
+    section: "Information undertakings",
+    title: "Information undertakings (reporting)",
+    purpose:
+      "Requires delivery of financial and compliance information — annual and quarterly financial statements, a compliance certificate, budgets, and notice of default/litigation — so lenders can monitor the credit between covenant tests.",
+    borrowerAsk:
+      "Longer delivery deadlines, no monthly management accounts, a quarterly (not monthly) compliance certificate, and limited ad hoc information requests.",
+    lenderPushback:
+      "Prompt delivery (e.g. 120/45 days for annual/quarterly), a compliance certificate with covenant calculations, an annual budget, lender presentations/calls, and KYC cooperation.",
+    marketPosition:
+      "Annual audited and quarterly financials with a compliance certificate, an annual budget and default/litigation notices are the standard package; deadlines and any monthly reporting are negotiated (tighter in private credit).",
+    draftingNotes:
+      "The compliance-certificate mechanics (who signs, covenant calculations, EBITDA build) matter — this is where add-backs and cures are evidenced. Private-credit deals require more frequent, granular reporting than syndicated.",
+    sample:
+      "The Company shall supply to the Agent: (a) its audited consolidated financial statements within [120] days of each financial year end; (b) its consolidated management accounts within [45] days of each financial quarter end; and (c) with each, a Compliance Certificate signed by [two directors] setting out (in reasonable detail) computations of the Financial Covenant.",
+    relatedCases: [],
+    relatedTasks: ["A2"],
   },
 ];
