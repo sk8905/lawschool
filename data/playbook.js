@@ -71,6 +71,8 @@ export const CLAUSES = [
       "50bps MFN with a 6–12 month sunset is common in large-cap; no-sunset MFN is a lender win now rarer in borrower-friendly markets. Carve-outs for different-maturity or acquisition debt are heavily negotiated.",
     draftingNotes:
       "Define 'all-in yield' carefully (include OID amortised over life, upfront fees) or the protection is easily arbitraged. Track the sunset date as a diarised event.",
+    sample:
+      "If the all-in yield on any Incremental Facility incurred within [12] months of the Closing Date exceeds the all-in yield on the existing Term Loans by more than [0.50]%, the Margin on the existing Term Loans shall be increased so that such difference does not exceed [0.50]%.",
     relatedCases: [],
     relatedTasks: ["A2", "A3", "A6"],
   },
@@ -161,6 +163,8 @@ export const CLAUSES = [
       "Compounded-in-arrears SONIA/SOFR with a 5-day lookback (observation shift) is now standard; the LIBOR transition is complete and legacy fallback language has largely dropped away.",
     draftingNotes:
       "Know the mechanics cold — compounding method, lookback vs observation shift, CAS, zero floor, and the fallback waterfall. The LMA has RFR-native forms; don't retrofit old LIBOR wording.",
+    sample:
+      "The rate of interest on each Loan for an Interest Period is the aggregate of the Margin and the Compounded Reference Rate (daily SONIA compounded in arrears over the Interest Period with a [5] Business Day lookback), provided that if that aggregate is less than zero, the rate of interest shall be deemed to be zero.",
     relatedCases: [],
     relatedTasks: ["D1"],
   },
@@ -237,6 +241,8 @@ export const CLAUSES = [
       "Post-Serta / Mitel / Incora, lenders increasingly negotiate explicit protection making priming/subordination and pro rata sharing sacred rights and tightening 'open market purchase'; sponsor-friendly docs still leave gaps.",
     draftingNotes:
       "The battleground is precisely which matters need all-affected-lender vs required-lender consent, and whether lien/payment subordination and pro rata sharing are sacred. Draft the 'open market purchase' definition tightly — that phrase did the work in Serta.",
+    sample:
+      "An amendment, waiver or consent that (a) releases or subordinates any material Transaction Security or Guarantee, (b) amends the pro rata sharing or payment-waterfall provisions, or (c) subordinates the Liabilities in right of payment, requires the consent of each Lender affected thereby (and not merely the Majority Lenders).",
     relatedCases: ["case:serta", "case:mitel", "case:incora"],
     relatedTasks: ["C5"],
   },
@@ -273,6 +279,8 @@ export const CLAUSES = [
       "Serta made the meaning of 'open market purchase' central; post-decision, lenders push to define it precisely and close the non-pro-rata exchange route. Buyback mechanics (Dutch auction vs open market) are negotiated.",
     draftingNotes:
       "This single defined term can decide an uptier's validity — draft it, and its interaction with pro rata sharing, deliberately. Consider disenfranchising debt held by the borrower/sponsor.",
+    sample:
+      "Any Loans acquired by the Parent or any of its Affiliates (whether by Open Market Purchase, Dutch Auction or otherwise) shall be immediately cancelled and, pending cancellation, shall be disregarded and may not be voted for any voting or consent purpose under the Finance Documents.",
     relatedCases: ["case:serta", "case:mitel"],
     relatedTasks: ["C5"],
   },
@@ -421,6 +429,8 @@ export const CLAUSES = [
       "Stepped standstill periods (e.g. 90/120/150/179 days depending on the nature of the default) are standard, with insolvency of an obligor typically lifting the standstill.",
     draftingNotes:
       "Align standstill expiry with senior's realistic enforcement timeline. Watch the interaction with the creditor duty (Sequana) — directors' behaviour in the standstill window is scrutinised.",
+    sample:
+      "Until the expiry of the relevant Standstill Period, no Junior Creditor shall accelerate, demand, sue for or take any Enforcement Action in respect of the Junior Liabilities, save that the Standstill Period shall end immediately on the occurrence of an Insolvency Event in respect of any Obligor.",
     relatedCases: ["case:sequana"],
     relatedTasks: ["A5"],
   },
@@ -571,6 +581,8 @@ export const CLAUSES = [
       "Negative pledge with a defined permitted-liens list and a capped general basket is universal; it does most of the protective work in unsecured IG facilities.",
     draftingNotes:
       "In an unsecured deal this clause is the security. Size the permitted-liens general basket against the debt baskets — leakage compounds across both.",
+    sample:
+      "No Obligor shall (and the Company shall procure that no member of the Group will) create or permit to subsist any Security over any of its assets, other than Permitted Security.",
     relatedCases: [],
     relatedTasks: ["A7"],
   },
@@ -589,6 +601,8 @@ export const CLAUSES = [
       "Guarantor coverage tested against an agreed guarantor-coverage threshold (e.g. % of group EBITDA/assets) with jurisdiction-specific limitation language is standard.",
     draftingNotes:
       "Watch undue influence where an individual guarantees for another's benefit (Waller-Edwards / Etridge — paper independent legal advice). Recovery against directors behind a guarantor is constrained by the accessory-liability line (Lifestyle Equities).",
+    sample:
+      "Each Guarantor irrevocably and unconditionally, jointly and severally, guarantees to each Finance Party the due and punctual performance by each other Obligor of its obligations under the Finance Documents and, as an independent and primary obligation, indemnifies each Finance Party against any loss arising from any such obligation being or becoming unenforceable, invalid or illegal.",
     relatedCases: ["case:walleredwards", "case:lifestyle", "case:luxfilms"],
     relatedTasks: ["B3", "B4"],
   },
@@ -739,6 +753,8 @@ export const CLAUSES = [
       "Senior LTV covenants (commonly 55–65%, asset/tenant-dependent) with lender-instructed valuations and cure rights are standard; the cure mechanics and valuation frequency/control are negotiated.",
     draftingNotes:
       "Define 'Market Value' by reference to the RICS Red Book and specify who instructs and pays for valuations. Sequence LTV with the cash-trap and debt-yield covenants so cash control precedes default.",
+    sample:
+      "The Borrower shall ensure that on each Test Date the Loan-to-Value does not exceed [60]%, where Loan-to-Value means the principal amount of the Loan expressed as a percentage of the Market Value of the Properties as most recently determined by a Valuation instructed by the Agent.",
     relatedCases: [],
     relatedTasks: ["A1"],
   },
@@ -1019,5 +1035,127 @@ export const CLAUSES = [
       "This schedule is where credit risk is actually controlled — draft it precisely and align it with the warehouse borrowing base and the CLO coverage/quality tests.",
     relatedCases: [],
     relatedTasks: ["C7", "C8"],
+  },
+
+  // ==== Payments, remedies & pricing mechanics ====
+  {
+    id: "cl:lev-taxgrossup",
+    doc: "leveraged",
+    section: "Payments — tax",
+    title: "Tax gross-up, increased costs & FATCA",
+    purpose:
+      "Ensures lenders receive their expected net return: the borrower grosses up for withholding tax, indemnifies increased costs from regulatory/capital changes, and the parties allocate FATCA risk. 'Qualifying Lender' / Treaty-Lender mechanics manage UK withholding.",
+    borrowerAsk:
+      "Gross-up only for Qualifying/Treaty Lenders, exclusions where withholding arises from a lender's own status or a transfer, a tax-credit clawback where the lender benefits, and notice/caps on increased costs.",
+    lenderPushback:
+      "Full gross-up and increased-costs indemnity, limited borrower set-off, and standard FATCA protections; the borrower to complete tax documentation to establish treaty relief.",
+    marketPosition:
+      "LMA-standard tax gross-up, increased costs, tax-credit and FATCA provisions are largely boilerplate; the negotiation is the Qualifying-Lender definition, transfer-related carve-outs and the tax-credit mechanic.",
+    draftingNotes:
+      "Get the Qualifying Lender / Treaty Lender definitions right for the lender group and jurisdictions, and confirm HMRC DTTP (Treaty Passport) mechanics. Increased costs should exclude amounts already compensated under tax gross-up.",
+    sample:
+      "If any Obligor is required to make a Tax Deduction, the payment shall be increased to an amount which (after the Tax Deduction) leaves an amount equal to the payment that would have been due had no Tax Deduction been required, save that no additional amount is payable in respect of a Tax Deduction attributable to a Lender that is not a Qualifying Lender (other than as a result of a Change in Law after it became a Lender).",
+    relatedCases: [],
+    relatedTasks: ["A2"],
+  },
+  {
+    id: "cl:lev-defaulting",
+    doc: "leveraged",
+    section: "Lenders — voting & default",
+    title: "Defaulting lenders, yank-the-bank & snooze-you-lose",
+    purpose:
+      "Manages problem lenders and stalled decisions: a Defaulting Lender is disenfranchised and can be removed or replaced ('yank the bank'); and 'snooze-you-lose' disregards lenders who fail to respond to a consent request in time so silent lenders can't block the majority.",
+    borrowerAsk:
+      "Broad ability to replace or remove a Defaulting or non-consenting lender, snooze-you-lose so silent lenders don't block consents, and yank-the-bank on any lender refusing a majority-approved consent.",
+    lenderPushback:
+      "A narrow Defaulting-Lender definition and yank-the-bank triggers, protection of sacred/all-lender rights from majority replacement, and reasonable response windows before snooze-you-lose bites.",
+    marketPosition:
+      "Defaulting-lender disenfranchisement, replacement/yank-the-bank on refusal of a majority-approved consent, and snooze-you-lose for non-responses are standard LMA mechanics; the response period and protected matters are negotiated.",
+    draftingNotes:
+      "Snooze-you-lose must not override all-lender/sacred rights (see the Distressed playbook on voting). Define 'Defaulting Lender' (payment default, insolvency, rescission) and the replacement/transfer mechanics precisely.",
+    sample:
+      "If a Lender fails to respond in writing to a request for a consent, waiver or amendment within [15] Business Days of that request, its Commitment shall be excluded for the purpose of determining whether the requisite majority of Lenders has approved that request.",
+    relatedCases: [],
+    relatedTasks: ["A2", "A3"],
+  },
+  {
+    id: "cl:lev-permacq",
+    doc: "leveraged",
+    section: "Negative covenants — acquisitions",
+    title: "Permitted acquisitions",
+    purpose:
+      "Defines when the group may acquire without lender consent — a key buy-and-build permission — subject to conditions (same/similar business, permitted jurisdiction, no default, pro forma leverage, guarantor accession, and caps on non-guarantor/loss-making targets).",
+    borrowerAsk:
+      "Unlimited permitted acquisitions subject only to no-EoD and pro forma leverage, broad target criteria, generous caps for targets outside the security net, and inclusion of acquired EBITDA (with synergies) in ratios.",
+    lenderPushback:
+      "Conditions: no default, pro forma covenant compliance, target in a permitted business/jurisdiction, accession of material targets as guarantors, and caps on acquisitions of non-guarantors and loss-making targets.",
+    marketPosition:
+      "Permitted acquisitions gated by no-default plus pro forma leverage (and, in tighter deals, a de-leveraging test) are market; guarantor-accession and non-guarantor caps are negotiated. Interacts with the DDTL/incremental and EBITDA provisions.",
+    draftingNotes:
+      "Tie permitted acquisitions to the guarantee-coverage test (targets should accede as obligors) and watch acquired-EBITDA/synergy add-backs feeding the ratios. Reconcile with certain-funds/clean-up for the acquisition itself.",
+    sample:
+      "'Permitted Acquisition' means an acquisition of a company or business where: (a) no Default is continuing or would result; (b) the acquired business is substantially the same as or complementary to the Group's; (c) the Total Net Leverage Ratio (pro forma) would not exceed [ ]:1; and (d) any Material Company acquired accedes as an Additional Guarantor within [90] days.",
+    relatedCases: [],
+    relatedTasks: ["A2", "C3"],
+  },
+  {
+    id: "cl:lev-marginratchet",
+    doc: "leveraged",
+    section: "Interest — margin",
+    title: "Margin ratchet",
+    purpose:
+      "Adjusts the interest margin up or down by reference to leverage (or ratings), rewarding de-leveraging with a lower margin. A grid maps leverage bands to margin steps.",
+    borrowerAsk:
+      "Multiple downward steps kicking in early, ratchet operative from the first test date, and no reversal to the top margin except on default.",
+    lenderPushback:
+      "Margin held at the top of the grid for an initial period (e.g. 6–12 months), ratchet suspended during an EoD, and modest step sizes.",
+    marketPosition:
+      "Leverage-based margin grids with several 25bps steps, an opening-margin holiday, and suspension on default are standard; the number/size of steps and the holiday period are negotiated.",
+    draftingNotes:
+      "Specify the reference ratio, test dates, the effect of a misstatement (retrospective adjustment), and suspension on EoD. Coordinate with any sustainability-linked ratchet so the two grids don't double-count.",
+    sample:
+      "The Margin shall be the rate set out in the ratchet table opposite the Total Net Leverage Ratio for the most recent Relevant Period, provided that (i) until the first Test Date the Margin shall be the highest rate and (ii) while an Event of Default is continuing the Margin shall be the highest rate.",
+    relatedCases: [],
+    relatedTasks: ["A2"],
+  },
+  {
+    id: "cl:lev-esg",
+    doc: "leveraged",
+    section: "Interest — sustainability",
+    title: "Sustainability-linked margin ratchet (ESG)",
+    purpose:
+      "A small margin adjustment (e.g. ±2.5–5bps) tied to the borrower meeting sustainability performance targets (SPTs) against KPIs, per the SLLP framework — independent of the credit and of the leverage ratchet.",
+    borrowerAsk:
+      "A modest two-way ratchet, borrower-selected KPIs/SPTs, self-certification with periodic external review, and no EoD for missing an SPT or a reporting failure (only a margin effect).",
+    lenderPushback:
+      "Ambitious, externally-verified SPTs, a declassification mechanic if targets are unverified or unambitious, and reversion to the higher margin on reporting failure — to manage greenwashing risk.",
+    marketPosition:
+      "Two-way sustainability ratchets (±2.5–5bps) with KPIs/SPTs and external verification, per the March-2025 SLLP update, are increasingly standard; declassification and greenwashing controls are the current focus.",
+    draftingNotes:
+      "Keep the ESG ratchet separate from the leverage ratchet and ensure a missed SPT is not an EoD. Build in declassification and reversion on unverified reporting to address greenwashing.",
+    sample:
+      "With effect from each Margin Adjustment Date the Margin shall be decreased or increased by up to 0.05% according to whether the Sustainability Performance Targets have been met, as confirmed in the External Review Report; failure to deliver a Sustainability Certificate results in no downward adjustment but is not an Event of Default.",
+    relatedCases: [],
+    relatedTasks: ["C4"],
+  },
+  {
+    id: "cl:lev-defaultinterest",
+    doc: "leveraged",
+    section: "Interest — default & remedies",
+    title: "Default interest, break costs & remedies",
+    purpose:
+      "Sets the additional interest on overdue amounts (default interest), break costs on unscheduled repayment, and related remedies — compensating lenders for a defaulting borrower without straying into an unenforceable penalty.",
+    borrowerAsk:
+      "A modest default-interest uplift (e.g. 1% over the applicable rate) on the overdue amount only, no compounding, and break costs limited to actual losses.",
+    lenderPushback:
+      "Default interest at 1–2% over the rate on overdue amounts (and, in some deals, the whole loan on acceleration), compounding, plus a full break-cost and costs indemnity.",
+    marketPosition:
+      "A 1% default-interest margin on overdue amounts is the LMA norm and comfortably enforceable; default interest on the entire loan post-acceleration is more aggressive. Break costs are standard for fixed-rate/hedged exposures.",
+    draftingNotes:
+      "Keep default interest proportionate to a legitimate commercial interest so it is enforceable and not a penalty (Cavendish v Makdessi). Draft break costs to reflect actual funding loss; RFR loans have limited break costs versus fixed-rate.",
+    sample:
+      "If an Obligor fails to pay any amount under a Finance Document on its due date, interest shall accrue on the overdue amount from the due date to the date of actual payment at a rate one per cent. (1%) per annum higher than the rate which would have applied had the overdue amount constituted a Loan during that period.",
+    relatedCases: ["case:makdessi"],
+    relatedTasks: ["A2", "B8"],
   },
 ];

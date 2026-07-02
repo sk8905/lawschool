@@ -14,6 +14,7 @@ export const CATEGORIES = [
   "Interpretation & MAC",
   "Accessory liability",
   "Liability management / LME",
+  "Remedies & penalties",
   "Structured credit",
   "Documentation",
   "Rates / RFR",
@@ -347,5 +348,114 @@ export const CASES = [
       "Private credit is where much finance work now sits and where doc conventions differ from bank-syndicated deals. The regulatory attention is a live watch-list item for the 2026 horizon.",
     links: [],
     relatedClauses: ["cl:ic-ranking"],
+  },
+
+  // ---- Part 26A foundations (pre-Adler) ----
+  {
+    id: "case:deepocean",
+    type: "case",
+    title: "Re DeepOcean 1 UK Ltd",
+    citation: "[2021] EWHC 138 (Ch)",
+    court: "High Court",
+    date: "2021-01-28",
+    category: ["Restructuring / Part 26A"],
+    holding:
+      "The first sanction of a Part 26A restructuring plan using cross-class cram-down. Trower J confirmed the two statutory conditions for cram-down (the dissenting class is 'no worse off' than in the relevant alternative, and the plan is approved by a class with a genuine economic interest) and exercised the court's discretion to bind the dissenting class.",
+    whyItMatters:
+      "The origin point of the English cross-class cram-down jurisprudence that Adler and Petrofac later refined. Establishes the 'no worse off' test and the relevant-alternative counterfactual you now argue every plan against.",
+    links: [],
+    relatedClauses: ["cl:ic-enforcement"],
+  },
+  {
+    id: "case:virginactive",
+    type: "case",
+    title: "Re Virgin Active Holdings Ltd",
+    citation: "[2021] EWHC 1246 (Ch)",
+    court: "High Court",
+    date: "2021-05-12",
+    category: ["Restructuring / Part 26A"],
+    holding:
+      "Snowden J sanctioned a plan cramming down dissenting landlord classes, holding that creditors who are 'out of the money' in the relevant alternative (here, administration) have no genuine economic interest and their votes/objections carry little weight. Emphasised that the allocation of the restructuring surplus is a matter for those with an economic interest.",
+    whyItMatters:
+      "The key early authority on valuation and who gets a say — 'out of the money' creditors can be crammed down. Read alongside Adler/Petrofac, which later policed how the surplus is shared among those who ARE in the money.",
+    links: [],
+    relatedClauses: ["cl:ic-enforcement"],
+  },
+  {
+    id: "case:houst",
+    type: "case",
+    title: "Re Houst Ltd",
+    citation: "[2022] EWHC 1765 (Ch)",
+    court: "High Court",
+    date: "2022-07-22",
+    category: ["Restructuring / Part 26A"],
+    holding:
+      "The first restructuring plan for an SME, and an early instance of cramming down HMRC (a secondary preferential creditor). Demonstrated that Part 26A plans are available below the large-cap level and can bind dissenting HMRC where the statutory conditions are met.",
+    whyItMatters:
+      "Shows the reach of Part 26A into mid-market/SME situations and the treatment of HMRC as a dissenting creditor — relevant to how you advise smaller sponsors and lenders on restructuring options.",
+    links: [],
+    relatedClauses: [],
+  },
+  {
+    id: "case:gas",
+    type: "case",
+    title: "Re Great Annual Savings Co Ltd",
+    citation: "[2023] EWHC 1141 (Ch)",
+    court: "High Court",
+    date: "2023-05-16",
+    category: ["Restructuring / Part 26A"],
+    holding:
+      "The court refused to sanction a plan, declining to exercise cross-class cram-down. HMRC (a dissenting preferential creditor) opposed; the court was not satisfied that the conditions for cram-down were met or that the plan was fair, in particular as to the allocation of the benefits of the restructuring and the treatment of HMRC.",
+    whyItMatters:
+      "A refusal that foreshadowed the Adler/Petrofac fairness scrutiny, and a marker of HMRC's increasing willingness to oppose plans. Useful as the cautionary counterpoint to DeepOcean/Virgin Active.",
+    links: [],
+    relatedClauses: ["cl:ic-enforcement"],
+  },
+
+  // ---- Security & remedies ----
+  {
+    id: "case:spectrum",
+    type: "case",
+    title: "Re Spectrum Plus Ltd (NatWest v Spectrum)",
+    citation: "[2005] UKHL 41",
+    court: "House of Lords",
+    date: "2005-06-30",
+    category: ["Security & guarantees"],
+    holding:
+      "A charge over book debts is a fixed charge only if the chargee exercises real control over both the debts and their proceeds; where the chargor is free to draw on the proceeds account in the ordinary course, the charge is floating however it is labelled. Overruled Siebe Gorman.",
+    whyItMatters:
+      "The governing authority on fixed-vs-floating characterisation — decisive for priority, the prescribed part, and administration expenses. It is why you must operate account controls consistently with the drafting, and it underpins the debenture and account-security clauses.",
+    links: [],
+    relatedClauses: ["cl:sec-debenture", "cl:sec-accounts"],
+  },
+  {
+    id: "case:makdessi",
+    type: "case",
+    title: "Cavendish Square Holding BV v Makdessi",
+    citation: "[2015] UKSC 67",
+    court: "Supreme Court",
+    date: "2015-11-04",
+    category: ["Remedies & penalties"],
+    holding:
+      "Reformulated the penalty rule: a clause is an unenforceable penalty only if it imposes a detriment on the contract-breaker out of all proportion to the innocent party's legitimate interest in enforcement. The old 'genuine pre-estimate of loss' test is not determinative. The rule applies to secondary obligations triggered by breach.",
+    whyItMatters:
+      "The controlling authority on default interest, break costs, acceleration and fee clauses in finance documents. Well-drafted default-interest and cost provisions protecting a legitimate commercial interest are enforceable; punitive ones are not.",
+    links: [],
+    relatedClauses: ["cl:lev-defaultinterest"],
+  },
+  {
+    id: "case:arnold",
+    type: "case",
+    title: "Arnold v Britton",
+    citation: "[2015] UKSC 36",
+    court: "Supreme Court",
+    date: "2015-06-10",
+    category: ["Interpretation & MAC"],
+    holding:
+      "The court will not depart from the natural meaning of clear contractual language merely because it produces a commercially unfavourable or imprudent result for one party. Commercial common sense cannot be used to rewrite bad bargains; it operates only where language is genuinely unclear.",
+    whyItMatters:
+      "The counterweight to Rainy Sky — clear words govern. Together with Wood v Capita it frames how a court reads a rate, covenant, guarantee or EoD: draft precisely, because the language will be held to.",
+    links: [],
+    relatedClauses: ["cl:lev-covenants", "cl:lev-mac"],
   },
 ];

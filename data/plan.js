@@ -160,6 +160,27 @@ export const TASKS = [
     relatedCases: [],
     relatedClauses: ["cl:sec-debenture", "cl:sec-negpledge"],
   },
+  {
+    id: "A8",
+    workstream: "A",
+    week: 9,
+    effort: 4,
+    title: "Draft the pricing & payments mechanics",
+    detail:
+      "Work through the money-mechanics clauses that decide economics and remedies: margin ratchet, sustainability-linked ratchet, tax gross-up / increased costs, default interest and break costs, and the defaulting-lender / yank-the-bank / snooze-you-lose machinery. Draft each from the illustrative wording in the playbook and reconcile default interest against Cavendish v Makdessi.",
+    resources: [
+      "LMA facility agreement — interest, tax and lender provisions",
+      "Practical Law — Margin ratchets; Default interest",
+    ],
+    relatedCases: ["case:makdessi"],
+    relatedClauses: [
+      "cl:lev-marginratchet",
+      "cl:lev-esg",
+      "cl:lev-taxgrossup",
+      "cl:lev-defaultinterest",
+      "cl:lev-defaulting",
+    ],
+  },
 
   // ---- Workstream B — Case Law & Currency ----
   {
@@ -252,6 +273,53 @@ export const TASKS = [
     ],
     relatedCases: [],
     relatedClauses: [],
+  },
+  {
+    id: "B7",
+    workstream: "B",
+    week: 5,
+    effort: 2,
+    title: "Fixed vs floating & taking security (Spectrum)",
+    detail:
+      "Re-anchor the security-law fundamentals your drafting depends on: Spectrum Plus on fixed-vs-floating characterisation (control over the proceeds of book debts) and its consequences for priority, the prescribed part and administration expenses. Tie it back to how you draft and operate account and debenture security.",
+    resources: [
+      "Re Spectrum Plus Ltd [2005] UKHL 41",
+      "Beale, The Law of Security and Title-Based Financing",
+    ],
+    relatedCases: ["case:spectrum"],
+    relatedClauses: ["cl:sec-debenture", "cl:sec-accounts"],
+  },
+  {
+    id: "B8",
+    workstream: "B",
+    week: 6,
+    effort: 2,
+    title: "Penalties, default interest & strict interpretation",
+    detail:
+      "Read Cavendish v Makdessi (the modern penalty rule) and Arnold v Britton (clear words govern) together — the two cases that most affect default-interest / fee clauses and how tightly your drafting is read. Pair with the default-interest & remedies clause in the playbook.",
+    resources: [
+      "Cavendish Square Holding BV v Makdessi [2015] UKSC 67",
+      "Arnold v Britton [2015] UKSC 36",
+    ],
+    relatedCases: ["case:makdessi", "case:arnold"],
+    relatedClauses: ["cl:lev-defaultinterest"],
+  },
+  {
+    id: "B9",
+    workstream: "B",
+    week: 1,
+    effort: 2,
+    title: "Part 26A foundations (DeepOcean → Great Annual Savings)",
+    detail:
+      "Before the Adler/Petrofac appeals, read the first-instance arc that built the restructuring-plan jurisprudence: DeepOcean (first cross-class cram-down), Virgin Active (out-of-the-money creditors crammed down), Houst (first SME plan; HMRC) and Great Annual Savings (sanction refused). This is the base layer the Court of Appeal cases refine.",
+    resources: [
+      "Re DeepOcean 1 UK Ltd [2021] EWHC 138 (Ch)",
+      "Re Virgin Active Holdings Ltd [2021] EWHC 1246 (Ch)",
+      "Re Houst Ltd [2022] EWHC 1765 (Ch)",
+      "Re Great Annual Savings Co Ltd [2023] EWHC 1141 (Ch)",
+    ],
+    relatedCases: ["case:deepocean", "case:virginactive", "case:houst", "case:gas"],
+    relatedClauses: ["cl:ic-enforcement"],
   },
 
   // ---- Workstream C — Product Breadth ----

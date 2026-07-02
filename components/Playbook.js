@@ -106,6 +106,11 @@ function ClauseCard({ c, open, onToggle, patch, navigate, remove }) {
         </div>
         <div class="field"><span class="field-label">Market position</span><p>${c.marketPosition}</p></div>
         <div class="field"><span class="field-label">Drafting notes</span><p>${c.draftingNotes}</p></div>
+        ${!!c.sample &&
+          html`<div class="field sample">
+            <span class="field-label">Illustrative wording <span class="sample-caveat">— starter language to adapt, not the LMA form</span></span>
+            <pre class="sample-text">${c.sample}</pre>
+          </div>`}
         ${!!(c.relatedCases?.length || c.relatedTasks?.length) &&
           html`<div class="crosslinks no-print">
             ${(c.relatedCases || []).map((id) => {

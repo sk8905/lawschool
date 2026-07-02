@@ -232,6 +232,14 @@
       .ask-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 12px; }
       .field.ask { border-left: 3px solid #d6ddf2; padding-left: 10px; }
       .field.push { border-left: 3px solid #e6cf9e; padding-left: 10px; }
+      .field.sample { margin-top: 4px; }
+      .sample-caveat { text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--ink-faint); }
+      .sample-text {
+        margin: 4px 0 0; padding: 12px 14px; border: 1px solid var(--line);
+        border-left: 3px solid var(--accent); border-radius: 8px; background: #f7f9fb;
+        font-family: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+        font-size: 12.5px; line-height: 1.55; color: #26333f; white-space: pre-wrap; overflow-x: auto;
+      }
 
       /* ---- playbook ---- */
       .playbook { display: grid; grid-template-columns: 220px 1fr; gap: 20px; }
