@@ -120,7 +120,7 @@ function CaseRow({ c, open, onToggle, patch, navigate, remove }) {
     <${Accordion} open=${open} onToggle=${onToggle} header=${header}>
       ${c.holding && html`<div class="field"><span class="field-label">Holding</span><p>${c.holding}</p></div>`}
       ${c.whyItMatters && html`<div class="field"><span class="field-label">Why it matters</span><p>${c.whyItMatters}</p></div>`}
-      ${c.relatedClauses?.length &&
+      ${!!c.relatedClauses?.length &&
         html`<div class="crosslinks">
           ${c.relatedClauses.map((id) => {
             const cl = clauseById[id];

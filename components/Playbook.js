@@ -106,7 +106,7 @@ function ClauseCard({ c, open, onToggle, patch, navigate, remove }) {
         </div>
         <div class="field"><span class="field-label">Market position</span><p>${c.marketPosition}</p></div>
         <div class="field"><span class="field-label">Drafting notes</span><p>${c.draftingNotes}</p></div>
-        ${(c.relatedCases?.length || c.relatedTasks?.length) &&
+        ${!!(c.relatedCases?.length || c.relatedTasks?.length) &&
           html`<div class="crosslinks no-print">
             ${(c.relatedCases || []).map((id) => {
               const cc = caseById[id];

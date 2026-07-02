@@ -13,6 +13,8 @@ export const CATEGORIES = [
   "Directors' duties",
   "Interpretation & MAC",
   "Accessory liability",
+  "Liability management / LME",
+  "Structured credit",
   "Documentation",
   "Rates / RFR",
   "Sustainable finance",
@@ -178,6 +180,53 @@ export const CASES = [
     relatedClauses: ["cl:lev-mac"],
   },
 
+  // ---- Liability management / LME (US authorities — persuasive for European deals) ----
+  {
+    id: "case:serta",
+    type: "case",
+    title: "In re Serta Simmons Bedding LLC",
+    citation: "US Ct of Appeals (5th Cir.), Dec 2024",
+    court: "US 5th Circuit",
+    date: "2024-12-31",
+    category: ["Liability management / LME"],
+    holding:
+      "The Fifth Circuit held that a 2020 uptier transaction did not qualify as an 'open market purchase' permitted without pro rata sharing, so the non-participating lenders' debt was not validly subordinated; it also unwound the related indemnity protecting participating lenders. A landmark check on aggressive uptier liability-management exercises.",
+    whyItMatters:
+      "The leading authority on whether an 'open market purchase' exception permits a non-pro-rata uptier. Although US law, it drives how sponsors and credit funds structure — and how lenders draft against — priming transactions, including in European deals that borrow US techniques. Read with Mitel and Incora.",
+    links: [],
+    relatedClauses: ["cl:ds-sacredrights", "cl:ds-openmarket", "cl:ds-newmoney"],
+  },
+  {
+    id: "case:mitel",
+    type: "case",
+    title: "Ocean Trails CLO VII v MLN TopCo (Mitel)",
+    citation: "US (NY App. Div., 1st Dept.), 2024",
+    court: "NY Appellate Division",
+    date: "2024-08-01",
+    category: ["Liability management / LME"],
+    holding:
+      "A New York appellate court held that a non-pro-rata uptier breached the credit agreement's ratable-treatment / pro rata sharing provisions, diverging from earlier decisions that had upheld such transactions and signalling greater judicial scepticism of uptiers under New York-law documents.",
+    whyItMatters:
+      "New York law governs most large-cap credit documents, so this materially affects uptier risk. Paired with Serta, it defines the current liability-management litigation landscape and the drafting response.",
+    links: [],
+    relatedClauses: ["cl:ds-sacredrights", "cl:ds-openmarket"],
+  },
+  {
+    id: "case:incora",
+    type: "case",
+    title: "In re Wesco Aircraft (Incora)",
+    citation: "US Bankr. (S.D. Tex.), 2024",
+    court: "US Bankruptcy Court",
+    date: "2024-06-01",
+    category: ["Liability management / LME"],
+    holding:
+      "After trial, the bankruptcy court found that a 2022 uptier which used a small incremental note issuance to flip the required-holder majority and prime existing noteholders breached the indenture and the implied covenant of good faith, unwinding key aspects of the transaction.",
+    whyItMatters:
+      "One of the first post-trial rulings against an uptier, striking a 'majority flip'. Directly relevant to how minority-protection and sacred-rights language — and small incremental baskets — are tested and drafted.",
+    links: [],
+    relatedClauses: ["cl:ds-sacredrights", "cl:ds-newmoney"],
+  },
+
   // ---- Market & regulatory developments (log as entries) ----
   {
     id: "dev:lma-refresh",
@@ -238,6 +287,51 @@ export const CASES = [
       "NAV finance is a high-growth product adjacent to your existing strengths. Understanding subscription vs NAV structures widens your addressable partner practice.",
     links: [],
     relatedClauses: [],
+  },
+  {
+    id: "dev:lme-europe",
+    type: "market",
+    title: "Liability-management techniques migrating to Europe",
+    citation: "—",
+    court: "Market",
+    date: "2025-01-01",
+    category: ["Liability management / LME", "Market structure"],
+    holding:
+      "US-style liability-management techniques — uptiers/priming, drop-downs to unrestricted subsidiaries, and non-pro-rata new money — are increasingly appearing in European leveraged and private-credit situations as documentation converges and cov-lite spreads.",
+    whyItMatters:
+      "You will meet these on both sides in special situations. Knowing the US case law (Serta/Mitel/Incora) and the defensive drafting (sacred rights, J.Crew blockers, tight open-market-purchase definitions) is now part of European practice.",
+    links: [],
+    relatedClauses: ["cl:ds-sacredrights", "cl:ds-unrestricted", "cl:ds-newmoney"],
+  },
+  {
+    id: "dev:uk-secreg",
+    type: "regulatory",
+    title: "UK Securitisation Regulation reform (2024)",
+    citation: "—",
+    court: "PRA / FCA / HM Treasury",
+    date: "2024-11-01",
+    category: ["Structured credit"],
+    holding:
+      "The UK's securitisation framework was reformed and largely onshored from the EU regime, with PRA and FCA rules (in force from November 2024) covering risk retention (generally 5%), investor due diligence, transparency and the STS regime, replacing the retained EU Securitisation Regulation.",
+    whyItMatters:
+      "The regulatory frame for all structured-credit and SRT work in the UK. You need the current retention, due-diligence and transparency requirements to document securitisations and significant-risk-transfer trades.",
+    links: [],
+    relatedClauses: ["cl:sc-riskretention", "cl:sc-truesale"],
+  },
+  {
+    id: "dev:srt-growth",
+    type: "market",
+    title: "Significant risk transfer (SRT) growth",
+    citation: "—",
+    court: "Market",
+    date: "2025-01-01",
+    category: ["Structured credit", "Market structure"],
+    holding:
+      "Significant-risk-transfer (synthetic securitisation) issuance has grown rapidly as banks use SRT to manage regulatory capital under Basel 3.1, with credit funds and private-credit managers major buyers of the transferred risk.",
+    whyItMatters:
+      "SRT sits at the intersection of your credit-fund background and structured credit — a high-growth product where buy-side experience is valuable. Understand the structures and the bank-capital driver behind them.",
+    links: [],
+    relatedClauses: ["cl:sc-riskretention"],
   },
   {
     id: "dev:privatecredit-fsb",

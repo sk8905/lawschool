@@ -9,6 +9,9 @@
 
 export const DOCS = [
   { id: "leveraged", title: "Leveraged Facilities", short: "Leveraged" },
+  { id: "direct", title: "Direct Lending / Unitranche", short: "Direct Lending" },
+  { id: "distressed", title: "Distressed & Special Situations", short: "Distressed" },
+  { id: "structured", title: "Structured Credit", short: "Structured" },
   { id: "intercreditor", title: "Intercreditor Agreement", short: "Intercreditor" },
   { id: "ig", title: "Investment Grade / RCF", short: "IG / RCF" },
   { id: "ref", title: "Real Estate Finance", short: "REF" },
@@ -178,6 +181,210 @@ export const CLAUSES = [
       "Be alert to conflicts between US/UK/EU regimes and the EU Blocking Regulation — an unqualified rep can be unlawful to give. Coordinate with OFSI licensing guidance.",
     relatedCases: [],
     relatedTasks: ["D2"],
+  },
+
+  // ---- Direct Lending / Unitranche ----
+  {
+    id: "cl:dl-agl",
+    doc: "direct",
+    section: "Agreement among lenders",
+    title: "Agreement among lenders (AGL) — first-out / last-out",
+    purpose:
+      "In a unitranche financing the single blended facility is split behind the scenes into first-out and last-out tranches via an agreement among lenders (AGL). The AGL — often not shown to the borrower — sets the payment waterfall, voting, standstill and buy-out rights between the first-out lender (often a bank RCF/first-out) and the last-out lender (the credit fund).",
+    borrowerAsk:
+      "Borrower typically sees only the blended rate and a single facility agreement; its interest is a clean single point of contact and no exposure to inter-lender disputes.",
+    lenderPushback:
+      "First-out lender wants payment and enforcement priority, control of key decisions and a buy-out right; last-out (fund) accepts subordination for higher yield but wants voting on fundamental terms and a buy-out option.",
+    marketPosition:
+      "AGL-based unitranche with first-out / last-out (sometimes plus a small 'skin' RCF) is standard in mid-market direct lending; the waterfall, voting splits and buy-out price are negotiated between the lenders, not the borrower.",
+    draftingNotes:
+      "The real priority sits in the AGL, not the facility agreement or any intercreditor the borrower sees — always ask for and review the AGL when advising a lender. Reconcile with the security-enforcement waterfall.",
+    relatedCases: [],
+    relatedTasks: ["C2", "C5"],
+  },
+  {
+    id: "cl:dl-pik",
+    doc: "direct",
+    section: "Interest — PIK",
+    title: "PIK & PIK-toggle interest",
+    purpose:
+      "Direct-lending and hybrid instruments frequently allow interest to be paid in kind (PIK) rather than cash, or to toggle between cash and PIK — preserving borrower liquidity in exchange for a higher rate and a compounding balance.",
+    borrowerAsk:
+      "PIK-toggle at the borrower's option, generous PIK for a defined period, and no cash-pay trigger tied to leverage.",
+    lenderPushback:
+      "PIK only in defined circumstances, a cash-pay switch as leverage improves, and pricing that compensates for the compounding and deferred cash.",
+    marketPosition:
+      "PIK and PIK-toggle features are common in unitranche, HoldCo and solutions/hybrid instruments; fully-PIK is priced materially wider than cash-pay.",
+    draftingNotes:
+      "Model the compounding — a PIK balance grows the exposure and reshapes recovery in a downside. Coordinate with the intercreditor if PIK debt sits behind senior cash-pay.",
+    relatedCases: [],
+    relatedTasks: ["C2", "C6"],
+  },
+
+  // ---- Distressed & Special Situations ----
+  {
+    id: "cl:ds-sacredrights",
+    doc: "distressed",
+    section: "Voting & minority protection",
+    title: "Sacred rights, pro rata sharing & voting thresholds",
+    purpose:
+      "The provisions that protect minority lenders: 'sacred rights' requiring all-affected-lender (or unanimous) consent for changes to key terms, and pro rata sharing / ratable-treatment clauses. These are exactly what liability-management transactions try to work around.",
+    borrowerAsk:
+      "(Sponsor/borrower running an LME) a required-lender majority able to amend broadly, narrow sacred rights, and exceptions to pro rata sharing (open-market purchases, non-pro-rata new money) that permit uptiers and non-pro-rata exchanges.",
+    lenderPushback:
+      "Broad sacred rights — including making lien/claim subordination and pro rata sharing themselves all-lender matters — no open-market-purchase loophole, and anti-'majority-flip' protection against small incremental issuances changing the required-lender count.",
+    marketPosition:
+      "Post-Serta / Mitel / Incora, lenders increasingly negotiate explicit protection making priming/subordination and pro rata sharing sacred rights and tightening 'open market purchase'; sponsor-friendly docs still leave gaps.",
+    draftingNotes:
+      "The battleground is precisely which matters need all-affected-lender vs required-lender consent, and whether lien/payment subordination and pro rata sharing are sacred. Draft the 'open market purchase' definition tightly — that phrase did the work in Serta.",
+    relatedCases: ["case:serta", "case:mitel", "case:incora"],
+    relatedTasks: ["C5"],
+  },
+  {
+    id: "cl:ds-unrestricted",
+    doc: "distressed",
+    section: "Unrestricted subsidiaries",
+    title: "Unrestricted subsidiaries & drop-down capacity",
+    purpose:
+      "Unrestricted subsidiaries sit outside the covenant perimeter. Combined with investment and asset-transfer baskets, they enable 'drop-down' transactions (J.Crew) in which valuable assets — often IP — are moved beyond existing lenders' reach and used to raise new priming debt.",
+    borrowerAsk:
+      "Ability to designate unrestricted subsidiaries, generous investment / restricted-payment capacity to transfer assets to them, and freedom to raise debt at the unrestricted level secured on the transferred assets.",
+    lenderPushback:
+      "Restrict or remove unrestricted-subsidiary designation, blocker language preventing transfer of material IP / 'crown jewels', caps on investments into unrestricted subs, and a requirement that transferred assets remain guarantors/collateral (a 'J.Crew blocker').",
+    marketPosition:
+      "J.Crew blockers and material-IP transfer restrictions are now common lender asks; sponsor docs still preserve meaningful unrestricted-subsidiary and investment capacity. The aggregate leakage across baskets is the point.",
+    draftingNotes:
+      "Model the drop-down path end to end: designation → investment basket → asset transfer → new debt. A blocker on any one step defeats it. Reconcile with the EBITDA and basket definitions.",
+    relatedCases: ["dev:lme-europe"],
+    relatedTasks: ["C5"],
+  },
+  {
+    id: "cl:ds-openmarket",
+    doc: "distressed",
+    section: "Buybacks",
+    title: "Open-market purchases & non-pro-rata buybacks",
+    purpose:
+      "Exceptions permitting the borrower (or an affiliate) to buy back or exchange loans other than pro rata — including via 'open market purchases' — which uptier transactions have relied on to justify non-ratable treatment.",
+    borrowerAsk:
+      "A broad open-market-purchase and Dutch-auction buyback right exercisable non-pro-rata, usable by affiliates, without triggering pro rata sharing.",
+    lenderPushback:
+      "Define 'open market purchase' narrowly (a genuine secondary-market purchase, not a privately negotiated priming exchange), require pro rata offers, and disenfranchise debt held by the borrower/sponsor.",
+    marketPosition:
+      "Serta made the meaning of 'open market purchase' central; post-decision, lenders push to define it precisely and close the non-pro-rata exchange route. Buyback mechanics (Dutch auction vs open market) are negotiated.",
+    draftingNotes:
+      "This single defined term can decide an uptier's validity — draft it, and its interaction with pro rata sharing, deliberately. Consider disenfranchising debt held by the borrower/sponsor.",
+    relatedCases: ["case:serta", "case:mitel"],
+    relatedTasks: ["C5"],
+  },
+  {
+    id: "cl:ds-newmoney",
+    doc: "distressed",
+    section: "New money",
+    title: "Super-priority new money, priming & rescue financing",
+    purpose:
+      "Terms governing new money that primes existing debt — super-senior rescue financing, priming facilities and DIP-style funding — including whether existing lenders can be primed without consent and on what economics.",
+    borrowerAsk:
+      "Capacity to raise super-priority new money and prime existing lenders with required-lender (not all-lender) consent, generous priming baskets, and roll-up of participating lenders' existing debt.",
+    lenderPushback:
+      "Make priming/subordination a sacred right, cap priming baskets, require any new-money opportunity to be offered pro rata to all lenders, and resist roll-ups that reward only participating lenders.",
+    marketPosition:
+      "Pro rata new-money offers and priming-as-sacred-right are lender wins negotiated post-LME; sponsor docs preserve super-priority and roll-up flexibility. The fairness of the new-money allocation echoes the Part 26A cases.",
+    draftingNotes:
+      "Ties directly to the sacred-rights and pro rata provisions — priming without all-affected-lender consent is the crux. In an English restructuring the same fairness concern is policed under Part 26A (Adler/Petrofac).",
+    relatedCases: ["case:serta", "case:incora", "case:adler", "case:petrofac"],
+    relatedTasks: ["C5", "C6"],
+  },
+  {
+    id: "cl:ds-l2o",
+    doc: "distressed",
+    section: "Transfers / loan-to-own",
+    title: "Loan-to-own & debt-for-equity",
+    purpose:
+      "The mechanics by which a distressed-debt buyer converts a loan position into ownership — debt-for-equity swaps, credit bidding on enforcement, and control through a restructuring — the classic special-situations / loan-to-own play.",
+    borrowerAsk:
+      "(Incumbent sponsor) resists loss of control: change-of-control protection, limits on transfer of debt to competitors / loan-to-own funds, and consent rights on assignments.",
+    lenderPushback:
+      "(Distressed buyer) wants free transferability of the debt, ability to credit bid, and a clear path from a majority debt position to equity via enforcement or a restructuring plan.",
+    marketPosition:
+      "Transfer restrictions (disqualified-lender lists, competitor / loan-to-own-fund blocks) are negotiated up front precisely to control who can run a loan-to-own; credit-bidding and debt-for-equity via Part 26A are standard exit routes.",
+    draftingNotes:
+      "The assignment/transfer provisions and disqualified-lender list decide who can execute a loan-to-own — scrutinise them from both chairs. The exit typically runs through the intercreditor enforcement and Part 26A machinery.",
+    relatedCases: ["case:adler", "case:petrofac", "case:sequana"],
+    relatedTasks: ["C5"],
+  },
+
+  // ---- Structured Credit ----
+  {
+    id: "cl:sc-warehouse",
+    doc: "structured",
+    section: "Warehouse facility",
+    title: "Warehouse facility (borrowing base)",
+    purpose:
+      "A warehouse facility funds the accumulation ('ramp') of loans or assets ahead of a CLO or securitisation take-out. It advances against a borrowing base — eligible assets times an advance rate — subject to eligibility criteria, concentration limits and a mark-to-market / margin-call mechanic.",
+    borrowerAsk:
+      "(Manager/sponsor) a high advance rate, broad eligibility, generous concentration limits, a long ramp/reinvestment period, and limited or no mark-to-market margin calls.",
+    lenderPushback:
+      "Conservative advance rates, tight eligibility and concentration limits, borrowing-base haircuts for ineligible/defaulted assets, and mark-to-market with margin calls or triggers on NAV decline.",
+    marketPosition:
+      "Advance-rate / borrowing-base warehouses with eligibility and concentration schedules and MTM triggers are standard for CLO ramps and asset-based private-credit facilities; the MTM / margin mechanics are the key risk negotiation.",
+    draftingNotes:
+      "The eligibility criteria and concentration limits are where credit risk is actually controlled — draft the schedules carefully and define the borrowing-base and MTM triggers precisely. Coordinate with the take-out (CLO/securitisation) timeline.",
+    relatedCases: [],
+    relatedTasks: ["C7"],
+  },
+  {
+    id: "cl:sc-clotests",
+    doc: "structured",
+    section: "CLO coverage tests",
+    title: "CLO coverage tests & reinvestment",
+    purpose:
+      "The core CLO indenture tests that protect noteholders: overcollateralisation (OC) and interest coverage (IC) tests, the reinvestment period, and portfolio-quality tests (WAL, WARF, diversity). A breach diverts cash from equity/junior notes to pay down senior notes.",
+    borrowerAsk:
+      "(Equity/manager) headroom in the OC/IC tests, a long reinvestment period, flexible portfolio-quality tests, and cure/trading flexibility to fix a breach.",
+    lenderPushback:
+      "(Senior noteholders) tight OC/IC triggers diverting cash to senior on breach, disciplined reinvestment criteria, and firm WAL / WARF / diversity limits.",
+    marketPosition:
+      "OC/IC coverage tests with cash-diversion on breach, a defined reinvestment period and standard portfolio-quality tests are the architecture of every CLO; levels are negotiated by tranche.",
+    draftingNotes:
+      "Understand how a failed OC test cascades down the waterfall — it is the senior noteholders' core protection and the equity's core risk. Model the interaction with the reinvestment criteria.",
+    relatedCases: [],
+    relatedTasks: ["C7"],
+  },
+  {
+    id: "cl:sc-truesale",
+    doc: "structured",
+    section: "True sale",
+    title: "True sale & recharacterisation",
+    purpose:
+      "For a securitisation to move assets (and their risk) off the originator's balance sheet, the transfer must be a 'true sale', not a disguised secured loan. Recharacterisation as a loan — or consolidation on the originator's insolvency — defeats the structure.",
+    borrowerAsk:
+      "(Originator) a clean true-sale opinion, retained servicing and limited recourse that does not undermine sale treatment, and off-balance-sheet accounting.",
+    lenderPushback:
+      "(Investors/arranger) robust true-sale and non-consolidation opinions, retained recourse / credit enhancement limited to what is consistent with a sale, and bankruptcy-remote SPV structuring.",
+    marketPosition:
+      "True-sale plus non-consolidation opinions, a bankruptcy-remote SPV and limited recourse are standard securitisation architecture; the degree of retained risk/enhancement is calibrated to preserve sale treatment and meet risk-retention rules.",
+    draftingNotes:
+      "The tension is real: enough enhancement/retention to sell the notes and meet retention rules, but not so much recourse that the 'sale' is recharacterised. Coordinate the true-sale analysis with risk retention and SRT accounting.",
+    relatedCases: ["dev:uk-secreg"],
+    relatedTasks: ["C8"],
+  },
+  {
+    id: "cl:sc-riskretention",
+    doc: "structured",
+    section: "Risk retention",
+    title: "Risk retention (5% skin in the game)",
+    purpose:
+      "Securitisation regulation requires the originator/sponsor to retain a material net economic interest (generally 5%) in the securitisation — 'skin in the game' — aligning incentives and satisfying the UK/EU retention rules.",
+    borrowerAsk:
+      "(Originator) flexibility on the form of retention (vertical, horizontal, L-shaped), retention at the most capital-efficient level, and reliance on a third-party retention holder where permitted.",
+    lenderPushback:
+      "(Investors) clear, compliant and disclosed retention that satisfies their own due-diligence duty, retention held by an eligible entity, and representations/undertakings that it will be maintained.",
+    marketPosition:
+      "5% retention (vertical or horizontal most common) with disclosure is mandatory under the UK Securitisation Regulation; the form and holder are structured for capital efficiency, and investors diligence compliance.",
+    draftingNotes:
+      "Investors have their own regulatory diligence duty, so retention must be documented and disclosed, not merely agreed. Reconcile the retention form with the SRT / true-sale and capital objectives.",
+    relatedCases: ["dev:uk-secreg"],
+    relatedTasks: ["C8", "D5"],
   },
 
   // ---- Intercreditor ----

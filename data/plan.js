@@ -31,7 +31,7 @@ export const WORKSTREAMS = [
     short: "Breadth",
     color: "#8c5a2f",
     summary:
-      "Widen from RE-deep to the full finance product set: leveraged/acquisition, corporate/IG + RCFs, fund finance (subscription + NAV), private credit/direct lending, and the security/intercreditor/restructuring interfaces.",
+      "Widen from RE-deep to the full finance product set: leveraged/acquisition, corporate/IG + RCFs, fund finance (subscription + NAV), direct lending/unitranche, distressed & special situations / solutions capital (liability management, priming, loan-to-own, hybrid), and structured credit (CLOs, warehouses, securitisation/SRT).",
   },
   {
     id: "D",
@@ -315,6 +315,67 @@ export const TASKS = [
     relatedCases: [],
     relatedClauses: [],
   },
+  {
+    id: "C5",
+    workstream: "C",
+    week: 7,
+    effort: 5,
+    title: "Distressed & special situations: liability management",
+    detail:
+      "Get current on the liability-management toolkit that now dominates distressed credit: uptier / priming transactions (Serta), drop-down asset transfers to unrestricted subsidiaries (J.Crew), non-pro-rata exchanges, super-priority new money and loan-to-own. Understand both how they are executed and how existing lenders defend against them — from both chairs, given your buy-side seat.",
+    resources: [
+      "Practical Law — Liability management transactions",
+      "Serta Simmons / Mitel / Incora commentary",
+      "LMA / LSTA notes on lender protections",
+    ],
+    relatedCases: ["case:serta", "case:mitel", "case:incora"],
+    relatedClauses: ["cl:ds-sacredrights", "cl:ds-unrestricted", "cl:ds-openmarket", "cl:ds-newmoney", "cl:ds-l2o"],
+  },
+  {
+    id: "C6",
+    workstream: "C",
+    week: 9,
+    effort: 4,
+    title: "Solutions / capital solutions (hybrid capital)",
+    detail:
+      "Map the 'capital solutions' space your buy-side seat touched: preferred equity, HoldCo PIK, structured equity and rescue financing that sit between senior debt and common equity. Understand the documentation, ranking and PIK mechanics of hybrid instruments and where they compete with NAV finance and direct lending.",
+    resources: [
+      "Practical Law — Preferred equity / structured equity",
+      "LexisNexis — Holdco PIK and hybrid instruments",
+    ],
+    relatedCases: ["case:sequana"],
+    relatedClauses: ["cl:dl-pik", "cl:ds-newmoney", "cl:ic-ranking"],
+  },
+  {
+    id: "C7",
+    workstream: "C",
+    week: 8,
+    effort: 5,
+    title: "Structured credit: CLOs & warehouse facilities",
+    detail:
+      "Learn the structured-credit stack: CLO mechanics (warehouse, ramp-up, reinvestment period, WAL/WARF, OC/IC coverage tests, note tranching and equity) and the warehouse facilities that fund the ramp. Understand the manager, the indenture and the key tests that govern the vehicle.",
+    resources: [
+      "Practical Law — CLOs: overview",
+      "Warehouse facility / borrowing-base documentation notes",
+    ],
+    relatedCases: [],
+    relatedClauses: ["cl:sc-warehouse", "cl:sc-clotests"],
+  },
+  {
+    id: "C8",
+    workstream: "C",
+    week: 10,
+    effort: 4,
+    title: "Securitisation & significant risk transfer (SRT)",
+    detail:
+      "Cover the securitisation toolkit: true sale vs synthetic structures, significant-risk-transfer (SRT) trades that free bank capital under Basel 3.1, risk retention, STS treatment, and forward-flow / receivables financing. A high-growth area adjacent to private credit where buy-side experience is rare and valuable.",
+    resources: [
+      "Practical Law — Securitisation: overview",
+      "Practical Law — Significant risk transfer (SRT)",
+    ],
+    relatedCases: ["dev:uk-secreg", "dev:srt-growth"],
+    relatedClauses: ["cl:sc-truesale", "cl:sc-riskretention"],
+  },
 
   // ---- Workstream D — Regulatory & Risk ----
   {
@@ -361,6 +422,21 @@ export const TASKS = [
     ],
     relatedCases: [],
     relatedClauses: [],
+  },
+  {
+    id: "D5",
+    workstream: "D",
+    week: 11,
+    effort: 2,
+    title: "Securitisation Regulation & risk retention",
+    detail:
+      "Get current on the UK Securitisation Regulation regime (the 2024 onshored/reformed framework: risk retention, due-diligence, transparency and STS) and its Basel 3.1 capital interaction. The regulatory frame around all structured-credit and SRT work.",
+    resources: [
+      "Practical Law — UK Securitisation Regulation",
+      "PRA / FCA securitisation rules (in force Nov 2024)",
+    ],
+    relatedCases: ["dev:uk-secreg"],
+    relatedClauses: ["cl:sc-riskretention"],
   },
   {
     id: "D4",

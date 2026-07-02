@@ -127,7 +127,7 @@ function TaskCard({ task, statusOf, cycle, patch, navigate, showWeek = true }) {
       <p class="card-detail">${task.detail}</p>
       ${task.resources && task.resources.length > 0 &&
         html`<ul class="reslist">${task.resources.map((r) => html`<li>${r}</li>`)}</ul>`}
-      ${(task.relatedCases?.length || task.relatedClauses?.length) &&
+      ${!!(task.relatedCases?.length || task.relatedClauses?.length) &&
         html`<div class="crosslinks">
           ${(task.relatedCases || []).map((id) => {
             const c = caseById[id];
