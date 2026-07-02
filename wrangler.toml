@@ -7,7 +7,7 @@
 # your email by your Access policy). See README.md § "Cross-device sync" for the
 # full, click-by-click setup.
 
-name = "finance-law-refresher"
+name = "lawschool"
 main = "worker/index.js"
 compatibility_date = "2024-11-01"
 
