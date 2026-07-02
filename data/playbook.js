@@ -592,4 +592,432 @@ export const CLAUSES = [
     relatedCases: ["case:walleredwards", "case:lifestyle", "case:luxfilms"],
     relatedTasks: ["B3", "B4"],
   },
+
+  // ==== Additional leveraged clauses ====
+  {
+    id: "cl:lev-mandprepay",
+    doc: "leveraged",
+    section: "Mandatory prepayment",
+    title: "Mandatory prepayments & cash sweep",
+    purpose:
+      "Requires prepayment from defined sources — excess cashflow (the cash sweep), net disposal and insurance proceeds, and the proceeds of an IPO or further debt — capturing value for lenders before it leaks to equity.",
+    borrowerAsk:
+      "Low or nil excess-cashflow (ECF) sweep, or a leverage-based grid stepping to 0% below a leverage threshold; generous reinvestment rights for disposal/insurance proceeds; de minimis thresholds; and exclusion of equity-cure and available amounts from swept cash.",
+    lenderPushback:
+      "A meaningful ECF sweep (e.g. 50% stepping down with leverage), tight reinvestment periods and purpose limits, and prepayment of disposal proceeds that are not reinvested — applied across tranches pro rata / in inverse order.",
+    marketPosition:
+      "ECF sweeps with leverage-based step-downs (often to nil at or inside opening leverage) are market in cov-lite large-cap; reinvestment rights for disposal proceeds are standard. Mid-market and private-credit sweeps are tighter.",
+    draftingNotes:
+      "Define 'Excess Cashflow' and its deductions carefully (capex, permitted payments, voluntary prepayment credits) — it is heavily engineered. Reconcile reinvestment rights with the disposal covenant and baskets.",
+    relatedCases: [],
+    relatedTasks: ["A2", "A3"],
+  },
+  {
+    id: "cl:lev-incremental",
+    doc: "leveraged",
+    section: "Incremental facilities",
+    title: "Incremental / accordion facilities",
+    purpose:
+      "Lets the borrower raise additional debt (incremental term loans, incremental equivalent debt or an accordion) up to agreed limits without new-lender consent, to fund acquisitions and growth. The MFN clause protects existing lenders on pricing.",
+    borrowerAsk:
+      "A large 'free-and-clear' fixed/grower incremental amount plus unlimited amounts subject only to a leverage ratio (ratio incrementals), MFN and inside-maturity sunsets, and flexibility to incur as pari, junior or unsecured.",
+    lenderPushback:
+      "Cap the free-and-clear amount, require pro forma leverage compliance (and no default) for ratio incrementals, hold MFN with limited/no sunset, and restrict incremental to pari secured unless properly subordinated.",
+    marketPosition:
+      "Free-and-clear (greater of £X and Y% of EBITDA) plus unlimited ratio-based incremental at or inside opening leverage is standard large-cap, with 50bps / 6–12-month MFN. It compounds with the baskets and MFN provisions.",
+    draftingNotes:
+      "Model total incurrence headroom across incremental, ratio debt and the general debt basket together. Watch 'inside maturity' limits and the most-favoured-lender interplay.",
+    relatedCases: [],
+    relatedTasks: ["A2", "A6"],
+  },
+  {
+    id: "cl:lev-rp",
+    doc: "leveraged",
+    section: "Negative covenants — restricted payments",
+    title: "Restricted payments (dividends & distributions)",
+    purpose:
+      "Restricts dividends, distributions, junior-debt prepayments and other leakage to equity/affiliates, preserving cash in the credit group — the counterpart to the debt and investment covenants.",
+    borrowerAsk:
+      "Generous fixed/grower RP basket, a builder/available-amount basket usable for RPs, RPs permitted subject only to no-EoD and a leverage test, and carve-outs (tax distributions, management equity, ordinary-course intra-group).",
+    lenderPushback:
+      "Tight RP capacity, builder-basket RPs conditioned on inside-leverage and no default, and no leakage to junior creditors or sponsor while leverage is high.",
+    marketPosition:
+      "Grower RP baskets plus a builder basket keyed to cumulative retained cashflow, gated by a leverage ratio, are market in cov-lite deals. Lenders model aggregate leakage across the RP, investment and junior-prepayment baskets.",
+    draftingNotes:
+      "Never size RP capacity in isolation — value leaks through whichever of the RP / investment / debt baskets is loosest. Cap tax-distribution and management-equity carve-outs and keep them genuine.",
+    relatedCases: [],
+    relatedTasks: ["A2", "A3", "A6"],
+  },
+  {
+    id: "cl:lev-transfers",
+    doc: "leveraged",
+    section: "Assignments & transfers",
+    title: "Transfers, white lists & disqualified lenders",
+    purpose:
+      "Governs how lenders transfer their loans — consent rights, minimum amounts, and lists of permitted (white list) or barred (disqualified/DQ list) transferees — controlling who ends up in the syndicate, especially in a downside.",
+    borrowerAsk:
+      "Borrower consent to transfers (not unreasonably withheld) while no default, a broad disqualified-lender list (competitors and loan-to-own / distressed funds), and disenfranchisement of DQ lenders and affiliates.",
+    lenderPushback:
+      "Free transferability, consent deemed given after a period, no consent to other lenders/affiliates or on an EoD, and a narrow DQ list fixed at signing so secondary buyers are not trapped.",
+    marketPosition:
+      "Borrower consent (deemed) while solvent, plus a DQ list covering named competitors and — increasingly — distressed / loan-to-own funds, is market. Consent typically falls away on an EoD so lenders can exit.",
+    draftingNotes:
+      "The DQ list and consent-on-default mechanics decide who can build a blocking or loan-to-own stake — scrutinise from both chairs (see the Distressed playbook). Snapshot the list at a defined date.",
+    relatedCases: [],
+    relatedTasks: ["A2", "C5"],
+  },
+
+  // ==== Additional IG / RCF clauses ====
+  {
+    id: "cl:ig-financial",
+    doc: "ig",
+    section: "Financial covenants",
+    title: "IG financial covenant (leverage / interest cover)",
+    purpose:
+      "A single (or no) maintenance covenant tested quarterly — typically net leverage or interest cover — reflecting investment-grade or strong-corporate quality. The main quantitative discipline in an otherwise light package.",
+    borrowerAsk:
+      "One covenant only (often interest cover), wide headroom, a generous EBITDA definition, an equity cure, and an acquisition leverage spike with a defined step-down.",
+    lenderPushback:
+      "A leverage covenant with sensible headroom, capped acquisition spikes, tighter EBITDA than leveraged, and limits on cure frequency.",
+    marketPosition:
+      "IG RCFs carry a single net-leverage or interest-cover covenant (or none for true IG), tested quarterly, alongside a ratings/leverage margin grid. Definitions are far tighter than leveraged EBITDA.",
+    draftingNotes:
+      "With little else in the package, this covenant plus the negative pledge and pari passu do the protective work. Align the acquisition spike with the margin grid and any mandatory prepayment.",
+    relatedCases: [],
+    relatedTasks: [],
+  },
+  {
+    id: "cl:ig-coc",
+    doc: "ig",
+    section: "Change of control",
+    title: "Change of control (lender put)",
+    purpose:
+      "On a change of control the facilities become repayable — usually a lender put / option to cancel and be prepaid rather than an automatic EoD — reflecting that lenders underwrote a particular ownership and credit.",
+    borrowerAsk:
+      "An individual lender put (not automatic acceleration), a consultation/cure period, carve-outs for permitted reorganisations, a narrow definition, and (in stronger credits) portability.",
+    lenderPushback:
+      "Prompt repayment on any change of control, a tight definition (including 'acting in concert' and permitted holders), and no portability absent a leverage test and sanctions/KYC on the incomer.",
+    marketPosition:
+      "A lender-by-lender put with a short window is standard in IG/corporate; automatic EoD is more leveraged-style, and portability is rare in IG.",
+    draftingNotes:
+      "Draft the CoC definition precisely (percentage thresholds, concert parties, permitted holders) and coordinate with mandatory prepayment and any portability carve-out.",
+    relatedCases: [],
+    relatedTasks: [],
+  },
+  {
+    id: "cl:ig-ancillary",
+    doc: "ig",
+    section: "Facilities & utilisation",
+    title: "RCF utilisation, ancillary & swingline facilities",
+    purpose:
+      "Governs how a revolving facility is drawn, rolled and repaid, and the ancillary facilities (overdraft, guarantee, letters of credit, swingline) that banks provide within the RCF commitment for day-to-day liquidity.",
+    borrowerAsk:
+      "Flexible utilisation (short notice, multiple currencies), large ancillary/swingline baskets, rollover of revolving loans without re-testing conditions, and a clean-up on the repeating representations.",
+    lenderPushback:
+      "Conditions to each utilisation (no default, reps true), ancillary caps within the commitment, cash cover on cancellation, and a defined swingline sublimit with same-day mechanics.",
+    marketPosition:
+      "RCFs with ancillary-facility baskets (overdraft / BG / LC / swingline) carved out of the total commitment are standard; the negotiation is the ancillary basket size and the utilisation conditions.",
+    draftingNotes:
+      "Ensure ancillary facilities share security and guarantees rateably and are treated (often super-senior) in the intercreditor. Watch which 'major representations' are repeated at rollover.",
+    relatedCases: [],
+    relatedTasks: [],
+  },
+
+  // ==== Additional real estate finance clauses ====
+  {
+    id: "cl:ref-ltv",
+    doc: "ref",
+    section: "Financial covenants",
+    title: "Loan-to-value (LTV) covenant & valuations",
+    purpose:
+      "Caps the loan as a percentage of the property's market value, tested against periodic valuations — the core solvency covenant in REF. Breach triggers cash trap / cure and ultimately default.",
+    borrowerAsk:
+      "A high LTV threshold with headroom, infrequent valuations with borrower input on the valuer, cure by prepayment or deposit (with release on cure), and no 'valuation on demand' except on default.",
+    lenderPushback:
+      "Conservative LTV, lender-instructed valuations at least annually (and on default, at the borrower's cost), cure limited in frequency, and de-risking via cash trap before the covenant breaks.",
+    marketPosition:
+      "Senior LTV covenants (commonly 55–65%, asset/tenant-dependent) with lender-instructed valuations and cure rights are standard; the cure mechanics and valuation frequency/control are negotiated.",
+    draftingNotes:
+      "Define 'Market Value' by reference to the RICS Red Book and specify who instructs and pays for valuations. Sequence LTV with the cash-trap and debt-yield covenants so cash control precedes default.",
+    relatedCases: [],
+    relatedTasks: ["A1"],
+  },
+  {
+    id: "cl:ref-debtyield",
+    doc: "ref",
+    section: "Financial covenants",
+    title: "Debt yield / interest cover (ICR / DSCR)",
+    purpose:
+      "Income-based covenants — interest cover (ICR), debt-service cover (DSCR) and debt yield — test rental income against debt service, protecting against income decline even where capital value holds.",
+    borrowerAsk:
+      "Headroom on ICR/DSCR, projected (not just historical) income counted, gross-up for rent-free/void periods with committed leases, and cure by deposit.",
+    lenderPushback:
+      "Both historical and projected tests, exclusion of uncontracted/short income, tenant-concentration and lease-expiry haircuts, and cash trap on deterioration.",
+    marketPosition:
+      "Layered ICR/DSCR and debt-yield covenants alongside LTV are standard; the treatment of projected income, voids and tenant concentration is the negotiation, especially for multi-let assets.",
+    draftingNotes:
+      "Specify the income basis (passing vs contracted vs projected rent), void/rent-free adjustments and tenant-concentration limits. These feed directly into the cash-sweep waterfall.",
+    relatedCases: [],
+    relatedTasks: ["A1"],
+  },
+  {
+    id: "cl:ref-disposals",
+    doc: "ref",
+    section: "Disposals",
+    title: "Permitted disposals & release pricing (portfolio)",
+    purpose:
+      "In a multi-asset REF, governs sales of individual properties: the release price (portion of loan repaid on sale), the LTV/debt-yield retest of the remaining pool, and prepayment of net proceeds.",
+    borrowerAsk:
+      "Release at par (100% of the allocated loan amount) or a modest premium, active-management flexibility to sell or substitute, and reinvestment of proceeds into the portfolio.",
+    lenderPushback:
+      "A release price above the allocated loan amount (e.g. 110–125%) to de-lever the pool on each sale, a post-disposal LTV/debt-yield test, and mandatory prepayment of net proceeds.",
+    marketPosition:
+      "Release pricing at a premium to the allocated loan amount, with a retest of the remaining pool, is standard portfolio REF structure; the premium and retest levels are negotiated.",
+    draftingNotes:
+      "Set the Allocated Loan Amount per property and a release premium so the pool de-levers as the best assets are sold (cherry-picking protection). Coordinate with the cash-sweep and LTV covenants.",
+    relatedCases: [],
+    relatedTasks: ["A1"],
+  },
+  {
+    id: "cl:ref-recourse",
+    doc: "ref",
+    section: "Recourse",
+    title: "Non-recourse & recourse carve-outs (bad-boy guarantees)",
+    purpose:
+      "REF is typically non-recourse to the sponsor, with recourse limited to the property/propco — save for 'recourse carve-outs' (bad-boy guarantees) where sponsor misconduct (fraud, misapplication of rents, unpermitted transfers, voluntary insolvency) triggers partial or full recourse.",
+    borrowerAsk:
+      "True non-recourse, a short objective carve-out list limited to wilful/bad-faith acts, loss-only (not springing full) recourse, and exclusion of matters outside the sponsor's control.",
+    lenderPushback:
+      "A robust carve-out list (misappropriation of rents/insurance, waste, unpermitted encumbrance/transfer, fraud, voluntary insolvency = full springing recourse), backed by a creditworthy guarantor.",
+    marketPosition:
+      "Non-recourse propco financing with a negotiated bad-boy carve-out guarantee is standard; the scope of carve-outs and loss-vs-springing recourse is the key negotiation.",
+    draftingNotes:
+      "Distinguish 'loss' carve-outs (recourse for the loss caused) from 'springing' carve-outs (full recourse). Keep the springing list to genuinely egregious acts and confirm the guarantor's covenant strength.",
+    relatedCases: [],
+    relatedTasks: ["A1"],
+  },
+  {
+    id: "cl:ref-hedging",
+    doc: "ref",
+    section: "Hedging",
+    title: "Interest-rate hedging",
+    purpose:
+      "REF (and leveraged) facilities usually require floating-rate exposure to be hedged (cap or swap) for a minimum notional and period, protecting debt service against rate rises. The hedge counterparty shares the security.",
+    borrowerAsk:
+      "A cap (limited downside, no mark-to-market liability) rather than a swap, hedging a portion of the loan, flexibility on counterparty, and no super-senior hedge on enforcement.",
+    lenderPushback:
+      "Hedge a high proportion (often 80–100%) of the loan for the term via an approved counterparty on standard ISDA terms, with the hedge ranking in the security waterfall.",
+    marketPosition:
+      "Caps are common in REF (no MTM break cost); swaps more common in leveraged. Minimum hedged notional/percentage and term, and the hedge counterparty's ranking, are the negotiation.",
+    draftingNotes:
+      "Reconcile the hedging requirement with the intercreditor waterfall (hedge close-out amounts, super-senior treatment). A cap avoids swap break costs on prepayment — relevant to the mandatory-prepayment analysis.",
+    relatedCases: [],
+    relatedTasks: ["A1", "D1"],
+  },
+
+  // ==== Additional security & guarantee clauses ====
+  {
+    id: "cl:sec-principles",
+    doc: "security",
+    section: "Security & guarantee principles",
+    title: "Agreed security & guarantee principles",
+    purpose:
+      "A schedule that calibrates the security/guarantee package across jurisdictions — respecting corporate benefit, financial assistance, capital maintenance, cost/materiality thresholds and thin-cap/tax limits — so obligors give only enforceable, cost-justified security.",
+    borrowerAsk:
+      "Broad principles: materiality thresholds for guarantors and assets, no security where cost/time is disproportionate or where it triggers financial-assistance/whitewash burdens, and generous limitation language.",
+    lenderPushback:
+      "Guarantor-coverage tests (e.g. a percentage of group EBITDA/assets), key assets always secured, and limitations no wider than local law strictly requires.",
+    marketPosition:
+      "Agreed security principles with a guarantor-coverage threshold and materiality carve-outs are standard in cross-border leveraged deals; the coverage percentage and thresholds are negotiated.",
+    draftingNotes:
+      "These principles govern every local-law security document, so they cap what the whole package delivers — get them right up front. Coordinate with the guarantee limitation language and local counsel.",
+    relatedCases: [],
+    relatedTasks: ["A7", "A2"],
+  },
+  {
+    id: "cl:sec-share",
+    doc: "security",
+    section: "Share security",
+    title: "Share charge / pledge",
+    purpose:
+      "A charge over the shares in obligors (especially the top holdco/propco) lets the security agent sell the company or appoint on enforcement, and underpins the intercreditor ability to effect a distressed disposal of a clean group beneath the charged shares.",
+    borrowerAsk:
+      "Charge limited to key holding companies, retention of voting and dividend rights until an EoD, and no perfection steps that impair operations.",
+    lenderPushback:
+      "A charge over all material subsidiaries' shares, delivery of share certificates and blank stock-transfer forms, and a shift of voting/dividend rights on default.",
+    marketPosition:
+      "Share charges over holdco and material subsidiaries, with pre-default voting/dividends left with the chargor and shifting on enforcement, are standard; certificated delivery plus blank transfers is market.",
+    draftingNotes:
+      "Share security enables the intercreditor 'release on distressed disposal' of the group below the charged shares — the key enforcement route. Confirm the constitution contains no transfer restrictions.",
+    relatedCases: [],
+    relatedTasks: ["A7"],
+  },
+  {
+    id: "cl:sec-accounts",
+    doc: "security",
+    section: "Receivables & accounts",
+    title: "Account & receivables security",
+    purpose:
+      "Fixed charges over bank accounts and key receivables (rent, intra-group, insurance) capture cash and income; combined with account control (blocked/controlled accounts) they give the lender cash dominion, especially in REF and asset-based lending.",
+    borrowerAsk:
+      "Operating accounts left free for day-to-day use, control only over rent/deposit accounts, and blocked-account triggers only on default or covenant breach.",
+    lenderPushback:
+      "Fixed charges with genuine control over key accounts (to avoid floating recharacterisation), rent/deposit accounts blocked or swept, and notice/acknowledgement to account banks and debtors.",
+    marketPosition:
+      "Controlled/blocked account structures with fixed charges over rent and deposit accounts are standard in REF; the trigger for full cash dominion (default vs covenant step) is negotiated.",
+    draftingNotes:
+      "Fixed vs floating turns on control (Spectrum Plus) — operate the account controls consistently or a 'fixed' charge is recharacterised as floating, changing priority and prescribed-part exposure. Serve notices to perfect assignments.",
+    relatedCases: [],
+    relatedTasks: ["A7", "A1"],
+  },
+  {
+    id: "cl:sec-parallel",
+    doc: "security",
+    section: "Security agent",
+    title: "Parallel debt & the security agent",
+    purpose:
+      "Where a security agent/trustee holds security for a syndicate — and in civil-law jurisdictions that don't recognise the trust — a 'parallel debt' creates an independent claim owed to the security agent so it can hold and enforce security for all lenders.",
+    borrowerAsk:
+      "Standard parallel-debt mechanics without double-counting exposure, and clarity that payment of the principal debt reduces the parallel debt.",
+    lenderPushback:
+      "Robust parallel-debt and no-double-recovery language enforceable in each relevant jurisdiction, and broad security-agent powers to act on an instructing-group direction.",
+    marketPosition:
+      "Parallel debt (or joint-and-several creditor structures) is standard in cross-border deals with civil-law security; English-law deals rely on the trust but add parallel debt for foreign security.",
+    draftingNotes:
+      "Confirm enforceability of the parallel-debt structure with local counsel in each security jurisdiction. It ties to the intercreditor enforcement and instructing-group provisions.",
+    relatedCases: [],
+    relatedTasks: ["A5", "A7"],
+  },
+
+  // ==== Additional intercreditor clauses ====
+  {
+    id: "cl:ic-permittedpay",
+    doc: "intercreditor",
+    section: "Permitted payments",
+    title: "Permitted payments & payment stop notices",
+    purpose:
+      "Defines what payments junior/mezzanine (and shareholder) creditors may receive while senior debt is outstanding, and how a senior 'payment stop notice' on default switches those permitted payments off.",
+    borrowerAsk:
+      "(Group) predictable permitted payments to service junior/shareholder debt (cash interest, agreed amortisation) so the structure functions.",
+    lenderPushback:
+      "(Senior) tightly defined permitted payments, an immediate stop on default via a payment stop notice, PIK-only junior interest in stress, and turnover of anything received in breach.",
+    marketPosition:
+      "Permitted-payment schedules (junior cash interest subject to no-default, PIK otherwise) with payment stop notices on senior default are standard in senior/mezz intercreditors.",
+    draftingNotes:
+      "Align permitted payments with the standstill and turnover provisions — a payment received during a stop must be turned over. Watch the number and duration of stop notices (blockage caps).",
+    relatedCases: [],
+    relatedTasks: ["A5"],
+  },
+  {
+    id: "cl:ic-hedging",
+    doc: "intercreditor",
+    section: "Hedging",
+    title: "Hedging counterparties in the waterfall",
+    purpose:
+      "Positions hedge counterparties in the priority/enforcement waterfall — often super-senior (alongside the RCF) for scheduled and close-out amounts — and controls their voting and enforcement rights.",
+    borrowerAsk:
+      "(Group) simple, standard treatment that keeps hedging available and cheap.",
+    lenderPushback:
+      "Senior lenders and hedge counterparties negotiate hedge ranking (super-senior close-out, sometimes capped) and limited hedge-counterparty voting/enforcement rights.",
+    marketPosition:
+      "Hedge close-out amounts ranking super-senior (sometimes capped) with limited hedge voting is standard; the cap and the treatment of early vs scheduled termination are negotiated.",
+    draftingNotes:
+      "Define which hedge amounts are super-senior (scheduled vs close-out) and any cap. Coordinate with the REF/leveraged hedging requirement and the enforcement waterfall.",
+    relatedCases: [],
+    relatedTasks: ["A5"],
+  },
+  {
+    id: "cl:ic-option",
+    doc: "intercreditor",
+    section: "Junior option to purchase",
+    title: "Junior option to purchase senior debt",
+    purpose:
+      "Gives junior/mezzanine creditors the right, on acceleration/enforcement, to buy out the senior debt at par (plus accrued and costs), taking control of the workout rather than being crammed or wiped out.",
+    borrowerAsk:
+      "(Not a borrower issue.) The group prefers a stable, funded resolution.",
+    lenderPushback:
+      "(Senior) a short exercise window and purchase at par plus all amounts (including hedge close-out and costs); (junior) a realistic window and price so the option is usable.",
+    marketPosition:
+      "A junior buy-out option at par, exercisable within a defined period after acceleration/enforcement, is standard in senior/mezz structures; the window and included amounts are negotiated.",
+    draftingNotes:
+      "Specify precisely what must be paid (principal, accrued interest, break/hedge costs) and the mechanics/timing. It interacts with enforcement control and the distressed loan-to-own analysis.",
+    relatedCases: ["case:adler"],
+    relatedTasks: ["A5", "C5"],
+  },
+
+  // ==== Additional direct lending clauses ====
+  {
+    id: "cl:dl-covenant",
+    doc: "direct",
+    section: "Financial covenant",
+    title: "Unitranche leverage covenant & equity cure",
+    purpose:
+      "Unlike broadly-syndicated cov-lite, mid-market direct-lending unitranche typically retains one or two maintenance covenants (usually net leverage, sometimes plus minimum liquidity), tested quarterly, with an equity cure.",
+    borrowerAsk:
+      "(Sponsor) a single leverage covenant with 30–40% headroom to the base case, generous equity-cure rights (multiple cures, deemed-EBITDA cure), and no cashflow/liquidity covenant.",
+    lenderPushback:
+      "(Fund) a leverage covenant with disciplined headroom, capped equity cures (frequency and over-cure), and sometimes a minimum-liquidity backstop.",
+    marketPosition:
+      "One leverage maintenance covenant with a ~35% headroom cushion and a capped equity cure is typical of European mid-market unitranche; larger unitranche trends toward cov-loose/cov-lite.",
+    draftingNotes:
+      "The cure mechanics (deemed EBITDA vs debt paydown, over-cure, count limits) are the key negotiation, as in leveraged. Reconcile with the AGL — first-out and last-out can have different covenant sensitivities.",
+    relatedCases: ["case:woodcapita"],
+    relatedTasks: ["C2"],
+  },
+  {
+    id: "cl:dl-ddtl",
+    doc: "direct",
+    section: "Facilities",
+    title: "Delayed-draw term loan & committed acquisition lines",
+    purpose:
+      "Direct lenders often provide committed delayed-draw term loans (DDTLs) and acquisition/capex facilities drawable post-close to fund a buy-and-build strategy, with a commitment (ticking) fee on the undrawn amount.",
+    borrowerAsk:
+      "(Sponsor) a long availability period, light conditions to draw (no re-underwrite), a low ticking fee, and use for a broad range of acquisitions/capex.",
+    lenderPushback:
+      "(Fund) conditions to each draw (pro forma leverage, no default, permitted-acquisition criteria), a defined availability period, and a market ticking fee.",
+    marketPosition:
+      "DDTLs and committed acquisition lines with pro-forma-leverage draw conditions and a ticking fee are a hallmark of buy-and-build direct lending; availability periods and draw conditions are negotiated.",
+    draftingNotes:
+      "Draw conditions (leverage test, permitted-acquisition definition) are where the credit is controlled between closing and draw. Coordinate with the incremental/accordion and permitted-acquisition provisions.",
+    relatedCases: [],
+    relatedTasks: ["C2", "C3"],
+  },
+
+  // ==== Additional structured credit clauses ====
+  {
+    id: "cl:sc-waterfall",
+    doc: "structured",
+    section: "Priority of payments",
+    title: "Priority of payments (waterfall)",
+    purpose:
+      "The payment 'waterfall' orders how collections are applied each period — fees, senior interest, senior principal (on tests), then down the tranches to equity — and typically differs pre- and post-enforcement. It is the spine of a CLO/securitisation.",
+    borrowerAsk:
+      "(Equity/manager) more cash reaching the residual/equity tranche — generous senior thresholds, interest diversion only on hard triggers, and management-fee seniority.",
+    lenderPushback:
+      "(Noteholders) diversion of cash to senior notes on OC/IC failure, sequential pay in stress, and subordination of certain fees/residual until tests cure.",
+    marketPosition:
+      "Separate interest and principal waterfalls that flip to sequential/turbo on trigger breach or post-acceleration are standard CLO/securitisation architecture; trigger levels and fee placement are negotiated.",
+    draftingNotes:
+      "Model the waterfall under stress (triggers breached) — that is where equity value evaporates and noteholder protection bites. Reconcile with the coverage-test and reinvestment provisions.",
+    relatedCases: [],
+    relatedTasks: ["C7", "C8"],
+  },
+  {
+    id: "cl:sc-eligibility",
+    doc: "structured",
+    section: "Eligibility & concentration",
+    title: "Eligibility criteria & concentration limits",
+    purpose:
+      "The eligibility criteria (what assets may be bought) and concentration limits (caps by obligor, industry, rating, currency, jurisdiction) define and constrain the portfolio in a CLO, warehouse or securitisation — the primary credit-risk controls.",
+    borrowerAsk:
+      "(Manager) broad eligibility and generous concentration limits for portfolio-construction flexibility, with cure/trading time to fix breaches.",
+    lenderPushback:
+      "(Arranger/noteholders) tight, well-defined eligibility, conservative concentration limits, and clear consequences (borrowing-base haircut / ineligibility) for assets outside the limits.",
+    marketPosition:
+      "Detailed eligibility schedules and concentration limits (single-obligor, industry, CCC/rating buckets, currency) are standard; the limits and the treatment of breaches are the core credit negotiation.",
+    draftingNotes:
+      "This schedule is where credit risk is actually controlled — draft it precisely and align it with the warehouse borrowing base and the CLO coverage/quality tests.",
+    relatedCases: [],
+    relatedTasks: ["C7", "C8"],
+  },
 ];
