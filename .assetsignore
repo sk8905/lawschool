@@ -1,0 +1,11 @@
+# Files NOT to publish as public static assets (Worker source, config, docs).
+# The Worker script itself is bundled separately via `main` in wrangler.toml,
+# so worker/ does not need to be served. lib/merge.js IS served (the browser
+# imports it), so lib/ is intentionally left in.
+worker
+wrangler.toml
+.assetsignore
+.git
+.gitignore
+.nojekyll
+README.md

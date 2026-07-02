@@ -1,0 +1,39 @@
+# wrangler.toml — Cloudflare Worker that serves the app AND the sync API.
+#
+# Deploy:  npx wrangler deploy   (after filling in the REPLACE_* values below)
+# Local:   npx wrangler dev
+#
+# The app is gated by Cloudflare Access (emailed one-time PIN, restricted to
+# your email by your Access policy). See README.md § "Cross-device sync" for the
+# full, click-by-click setup.
+
+name = "finance-law-refresher"
+main = "worker/index.js"
+compatibility_date = "2024-11-01"
+
+# Serve the repo as static assets. The Worker handles /api/*; everything else
+# is served from these files. .assetsignore excludes source/config that
+# shouldn't be public.
+[assets]
+directory = "."
+binding = "ASSETS"
+
+# KV namespace that stores your synced state. Create it once with:
+#   npx wrangler kv namespace create FRP_KV
+# then paste the printed id below.
+[[kv_namespaces]]
+binding = "FRP_KV"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[vars]
+# Comma-separated allow-list. Access already restricts who can log in; this is
+# a second check inside the Worker.
+ALLOWED_EMAIL = "kenneds7@tcd.ie"
+
+# Your Zero Trust team domain, e.g. "yourteam.cloudflareaccess.com"
+ACCESS_TEAM_DOMAIN = "REPLACE.cloudflareaccess.com"
+
+# The Application Audience (AUD) tag from the Access application you put in
+# front of this Worker (Zero Trust dashboard → Access → Applications →
+# your app → Overview → Application Audience (AUD) Tag).
+ACCESS_AUD = "REPLACE_WITH_ACCESS_APPLICATION_AUD"

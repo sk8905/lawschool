@@ -5,6 +5,7 @@ import { WORKSTREAMS, TASKS } from "./data/plan.js";
 import { CASES } from "./data/cases.js";
 import { CLAUSES } from "./data/playbook.js";
 import { useOverlay, useCustom, KEYS, exportAll, importAll, clearAll } from "./lib/store.js";
+import { whoami, syncNow, isApplying, LOGOUT_URL } from "./lib/sync.js";
 import { ProgressBar, Chip } from "./components/Shared.js";
 import { StudyTracker } from "./components/StudyTracker.js";
 import { CaseTracker } from "./components/CaseTracker.js";
@@ -47,6 +48,7 @@ function App() {
   }, [route]);
 
   const tab = route.tab;
+  const sync = useSync();
 
   return html`
     <div class="app">
@@ -75,7 +77,7 @@ function App() {
       </main>
 
       <footer class="footer no-print">
-        <span>Local-first · nothing leaves your browser. Progress is saved in this browser's storage.</span>
+        <${SyncStatus} sync=${sync} />
         <${DataControls} />
       </footer>
     </div>
@@ -231,6 +233,85 @@ function DataControls() {
       <label class="btn btn-sm file-btn">Import<input type="file" accept="application/json,.json" onChange=${doImport} /></label>
       <button class="btn btn-sm btn-ghost" onClick=${doReset}>Reset</button>
     </div>
+  `;
+}
+
+// --- cross-device sync ----------------------------------------------------
+
+let _changeTimer = null;
+
+function useSync() {
+  // mode: checking | local | syncing | synced | error
+  const [state, setState] = useState({ mode: "checking", email: null, at: 0 });
+
+  const run = useCallback(async () => {
+    setState((s) => (s.email ? { ...s, mode: "syncing" } : s));
+    try {
+      await syncNow();
+      setState((s) => ({ ...s, mode: "synced", at: Date.now() }));
+    } catch {
+      setState((s) => ({ ...s, mode: "error" }));
+    }
+  }, []);
+
+  // detect backend + initial sync
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      try {
+        const email = await whoami();
+        if (!alive) return;
+        setState({ mode: "syncing", email, at: 0 });
+        await run();
+      } catch {
+        if (alive) setState({ mode: "local", email: null, at: 0 });
+      }
+    })();
+    return () => {
+      alive = false;
+    };
+  }, [run]);
+
+  // push local edits (debounced) + pull other devices on focus
+  useEffect(() => {
+    if (!state.email) return;
+    const onChange = () => {
+      if (isApplying()) return;
+      clearTimeout(_changeTimer);
+      _changeTimer = setTimeout(run, 1500);
+    };
+    const onFocus = () => run();
+    window.addEventListener("frp:changed", onChange);
+    window.addEventListener("focus", onFocus);
+    return () => {
+      window.removeEventListener("frp:changed", onChange);
+      window.removeEventListener("focus", onFocus);
+      clearTimeout(_changeTimer);
+    };
+  }, [state.email, run]);
+
+  return { ...state, run };
+}
+
+function SyncStatus({ sync }) {
+  if (sync.mode === "checking") {
+    return html`<span class="syncbar"><span class="syncdot dot-checking"></span>Connecting…</span>`;
+  }
+  if (sync.mode === "local") {
+    return html`<span class="syncbar">Local-first · nothing leaves this browser. Progress is saved here; use Export to back up or move devices.</span>`;
+  }
+  const label =
+    sync.mode === "syncing" ? "Syncing…" : sync.mode === "error" ? "Sync error" : "Synced";
+  const dotClass =
+    sync.mode === "syncing" ? "dot-syncing" : sync.mode === "error" ? "dot-error" : "dot-synced";
+  return html`
+    <span class="syncbar">
+      <span class=${`syncdot ${dotClass}`}></span>
+      <strong>${label}</strong>
+      <span class="syncemail" title="Signed in via Cloudflare Access">${sync.email}</span>
+      <button class="btn btn-sm btn-ghost" onClick=${sync.run}>Sync now</button>
+      <a class="btn btn-sm btn-ghost" href=${LOGOUT_URL}>Sign out</a>
+    </span>
   `;
 }
 
