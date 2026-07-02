@@ -23,7 +23,7 @@ binding = "ASSETS"
 # then paste the printed id below.
 [[kv_namespaces]]
 binding = "FRP_KV"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "2643e79998ab41178297c856751bd261"
 
 [vars]
 # Comma-separated allow-list. Access already restricts who can log in; this is
@@ -31,9 +31,9 @@ id = "REPLACE_WITH_KV_NAMESPACE_ID"
 ALLOWED_EMAIL = "kenneds7@tcd.ie"
 
 # Your Zero Trust team domain, e.g. "yourteam.cloudflareaccess.com"
-ACCESS_TEAM_DOMAIN = "REPLACE.cloudflareaccess.com"
+ACCESS_TEAM_DOMAIN = "sweet-snow-46c4.cloudflareaccess.com"
 
 # The Application Audience (AUD) tag from the Access application you put in
 # front of this Worker (Zero Trust dashboard → Access → Applications →
 # your app → Overview → Application Audience (AUD) Tag).
-ACCESS_AUD = "REPLACE_WITH_ACCESS_APPLICATION_AUD"
+ACCESS_AUD = "78601771-4655-4dea-a0d3-be6593543c0c"
