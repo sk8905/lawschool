@@ -28,11 +28,26 @@ function parseHash() {
 function App() {
   const [route, setRoute] = useState(parseHash());
   const [search, setSearch] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
 
   useEffect(() => {
     const onHash = () => setRoute(parseHash());
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+
+  // global search: Cmd/Ctrl+K toggles, Esc closes
+  useEffect(() => {
+    const onKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && (e.key === "k" || e.key === "K")) {
+        e.preventDefault();
+        setShowSearch((s) => !s);
+      } else if (e.key === "Escape") {
+        setShowSearch(false);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, []);
 
   // navigate(tab, id?) — used by cross-link chips
@@ -64,14 +79,17 @@ function App() {
           ${TABS.map((t) => html`<button class=${`tab${tab === t.id ? " tab-on" : ""}`} onClick=${() => navigate(t.id)}>${t.label}</button>`)}
         </nav>
         <div class="topbar-right">
+          <button class="gsearch-btn" onClick=${() => setShowSearch(true)} title="Search everything (Ctrl/⌘ K)">
+            <span>Search all</span><span class="kbd">⌘K</span>
+          </button>
           ${tab !== "dashboard" &&
-            html`<input class="search" type="search" placeholder="Search ${tab}…" value=${search} onInput=${(e) => setSearch(e.target.value)} />`}
+            html`<input class="search" type="search" placeholder="Filter ${tab}…" value=${search} onInput=${(e) => setSearch(e.target.value)} />`}
         </div>
       </header>
 
       <main class="main">
         ${tab === "dashboard" && html`<${Dashboard} navigate=${navigate} />`}
-        ${tab === "plan" && html`<${StudyTracker} navigate=${navigate} search=${search} />`}
+        ${tab === "plan" && html`<${StudyTracker} navigate=${navigate} search=${search} focusId=${route.focusId} clearFocus=${clearFocus} />`}
         ${tab === "cases" && html`<${CaseTracker} navigate=${navigate} search=${search} focusId=${route.focusId} clearFocus=${clearFocus} />`}
         ${tab === "playbook" && html`<${Playbook} navigate=${navigate} search=${search} focusId=${route.focusId} clearFocus=${clearFocus} />`}
       </main>
@@ -80,6 +98,79 @@ function App() {
         <${SyncStatus} sync=${sync} />
         <${DataControls} />
       </footer>
+
+      ${showSearch && html`<${GlobalSearch} onClose=${() => setShowSearch(false)} navigate=${navigate} />`}
+    </div>
+  `;
+}
+
+function GlobalSearch({ onClose, navigate }) {
+  const [q, setQ] = useState("");
+  const query = q.trim().toLowerCase();
+  const go = (tab, id) => {
+    onClose();
+    navigate(tab, id);
+  };
+  const match = (hay) => hay.toLowerCase().includes(query);
+  const taskHits = !query
+    ? []
+    : TASKS.filter((t) => match(`${t.title} ${t.detail} ${(t.resources || []).join(" ")}`)).slice(0, 6);
+  const caseHits = !query
+    ? []
+    : CASES.filter((c) => match(`${c.title} ${c.citation} ${c.holding || ""} ${c.whyItMatters || ""} ${(c.category || []).join(" ")}`)).slice(0, 6);
+  const clauseHits = !query
+    ? []
+    : CLAUSES.filter((c) => match(`${c.title} ${c.section} ${c.purpose} ${c.borrowerAsk} ${c.lenderPushback} ${c.marketPosition} ${c.draftingNotes}`)).slice(0, 6);
+  const total = taskHits.length + caseHits.length + clauseHits.length;
+  const openFirst = () => {
+    if (taskHits[0]) go("plan", taskHits[0].id);
+    else if (caseHits[0]) go("cases", caseHits[0].id);
+    else if (clauseHits[0]) go("playbook", clauseHits[0].id);
+  };
+  return html`
+    <div class="gsearch-backdrop" onClick=${onClose}>
+      <div class="gsearch" onClick=${(e) => e.stopPropagation()}>
+        <input
+          class="gsearch-input"
+          autofocus
+          placeholder="Search tasks, cases and clauses…"
+          value=${q}
+          onInput=${(e) => setQ(e.target.value)}
+          onKeyDown=${(e) => { if (e.key === "Enter") openFirst(); }}
+        />
+        <div class="gsearch-results">
+          ${!query && html`<div class="gsearch-hint">Search across the study plan, case law and playbook. Press <b>Esc</b> to close.</div>`}
+          ${query && total === 0 && html`<div class="gsearch-hint">No matches for "${q}".</div>`}
+          ${taskHits.length > 0 &&
+            html`<div class="gsearch-group">
+              <div class="gsearch-grouphead">Study plan · ${taskHits.length}</div>
+              ${taskHits.map((t) => html`<button class="gsearch-row" onClick=${() => go("plan", t.id)}>
+                <span class="gsearch-badge badge-task">${t.id}</span>
+                <span class="gsearch-rowtitle">${t.title}</span>
+                <span class="gsearch-rowsub">Wk ${t.week}</span>
+              </button>`)}
+            </div>`}
+          ${caseHits.length > 0 &&
+            html`<div class="gsearch-group">
+              <div class="gsearch-grouphead">Case law · ${caseHits.length}</div>
+              ${caseHits.map((c) => html`<button class="gsearch-row" onClick=${() => go("cases", c.id)}>
+                <span class="gsearch-badge badge-case">⚖</span>
+                <span class="gsearch-rowtitle">${c.title}</span>
+                <span class="gsearch-rowsub">${c.citation}</span>
+              </button>`)}
+            </div>`}
+          ${clauseHits.length > 0 &&
+            html`<div class="gsearch-group">
+              <div class="gsearch-grouphead">Playbook · ${clauseHits.length}</div>
+              ${clauseHits.map((c) => html`<button class="gsearch-row" onClick=${() => go("playbook", c.id)}>
+                <span class="gsearch-badge badge-clause">§</span>
+                <span class="gsearch-rowtitle">${c.title}</span>
+                <span class="gsearch-rowsub">${c.section}</span>
+              </button>`)}
+            </div>`}
+        </div>
+        <div class="gsearch-foot"><span>↵ open first result · Esc close</span></div>
+      </div>
     </div>
   `;
 }

@@ -467,8 +467,8 @@ export const CLAUSES = [
       "Senior-controlled enforcement with a duty to obtain a fair price (often supported by a financial-adviser opinion) is standard; junior buy-out options and consultation periods are negotiated. Restructuring-plan dynamics (Adler/Petrofac) now loom over any enforcement strategy.",
     draftingNotes:
       "The enforcement waterfall and the restructuring-plan alternative interact: post-Adler/Petrofac, a plan may reallocate the surplus the intercreditor waterfall assumes. Advise on both routes together.",
-    relatedCases: ["case:adler", "case:petrofac", "case:sequana", "case:thameswater"],
-    relatedTasks: ["A5", "B1"],
+    relatedCases: ["case:adler", "case:petrofac", "case:sequana", "case:thameswater", "case:gategroup"],
+    relatedTasks: ["A5", "B1", "B10"],
   },
   {
     id: "cl:ic-release",
@@ -1259,5 +1259,107 @@ export const CLAUSES = [
       "The Company shall supply to the Agent: (a) its audited consolidated financial statements within [120] days of each financial year end; (b) its consolidated management accounts within [45] days of each financial quarter end; and (c) with each, a Compliance Certificate signed by [two directors] setting out (in reasonable detail) computations of the Financial Covenant.",
     relatedCases: [],
     relatedTasks: ["A2"],
+  },
+
+  // ==== Repayment, prepayment, agency, fees & guarantee limits ====
+  {
+    id: "cl:lev-amort",
+    doc: "leveraged",
+    section: "Repayment",
+    title: "Amortisation & repayment profile",
+    purpose:
+      "The repayment profile — bullet (repayable at maturity) for institutional TLB tranches, or amortising (scheduled instalments) for bank TLA tranches — plus the RCF's repayment at its termination date and the treatment of the balance at maturity.",
+    borrowerAsk:
+      "Bullet repayment with no amortisation, a long tenor, and the RCF repayable only at the termination date.",
+    lenderPushback:
+      "Some amortisation on bank tranches (e.g. 1% p.a. on a US-style TLB, or 5–10% p.a. on a TLA) and a defined final maturity, with mandatory prepayment on top.",
+    marketPosition:
+      "European leveraged TLBs are typically bullet with no amortisation; US TLBs carry 1% p.a. nominal amortisation. TLAs and RCFs amortise or repay at the termination date. Tenor is usually 5–7 years (TLB) and shorter for the RCF.",
+    draftingNotes:
+      "Keep amortisation, mandatory and voluntary prepayment application consistent (order across instalments — inverse vs pro rata). Confirm the RCF clean-down (if any) and the final repayment date.",
+    sample:
+      "The Borrower shall repay each Term Loan B in full on the Termination Date for Facility B. The Borrower shall repay Term Loan A by instalments on each Repayment Date in the amounts set out in Schedule [ ] (Repayment Schedule), with the balance repayable on the Termination Date.",
+    relatedCases: [],
+    relatedTasks: ["A2", "A4"],
+  },
+  {
+    id: "cl:lev-voluntaryprepay",
+    doc: "leveraged",
+    section: "Voluntary prepayment",
+    title: "Voluntary prepayment, soft call & debt buybacks",
+    purpose:
+      "Lets the borrower voluntarily prepay or cancel commitments (on notice, in minimum amounts, without premium after any soft-call period) and — via a Dutch auction or open-market buyback — repurchase its own debt below par, subject to the pro rata / sacred-rights regime.",
+    borrowerAsk:
+      "Prepayment at par on short notice without premium, no or short soft-call (101 for 6 months), broad debt-buyback rights (Dutch auction and open market), and application to instalments as the borrower directs.",
+    lenderPushback:
+      "A soft-call premium (101) against early repricing, minimum prepayment amounts, buybacks only via a par or Dutch-auction process open to all lenders (bought-back debt cancelled and disenfranchised), and no cherry-picking.",
+    marketPosition:
+      "Voluntary prepayment at par (subject to a 6-month 101 soft call on repricing) is standard; borrower debt buybacks via Dutch auction / open market with cancellation and disenfranchisement of purchased debt are common — and interact directly with the LME / sacred-rights analysis.",
+    draftingNotes:
+      "Coordinate the buyback mechanics with the pro-rata-sharing and open-market-purchase provisions (see Distressed) — this is the machinery uptiers exploit. Confirm the soft-call scope (repricing only vs all prepayments).",
+    sample:
+      "The Borrower may prepay the whole or any part of a Loan (in a minimum amount of £[ ]) on [3] Business Days' notice without premium, save that a prepayment of Facility B from the proceeds of a Repricing Transaction on or before [the date 6 months after Closing] shall be accompanied by a prepayment premium of 1.00%.",
+    relatedCases: [],
+    relatedTasks: ["A2", "C5"],
+  },
+  {
+    id: "cl:lev-agency",
+    doc: "leveraged",
+    section: "Agency & decision-making",
+    title: "Agent, Majority Lenders & voting machinery",
+    purpose:
+      "The agency and decision-making plumbing — the roles of the Agent and Security Agent, the definition of 'Majority Lenders', the matters needing all-lender or super-majority consent, and how instructions, amendments and waivers are given. What makes a syndicated deal operable.",
+    borrowerAsk:
+      "A workable Majority-Lender threshold (so consents are achievable), broad Agent authority to act, and defaulting-lender / snooze-you-lose disenfranchisement so a minority can't stall.",
+    lenderPushback:
+      "A meaningful Majority-Lender threshold (commonly 50.1% or 66⅔%), protection of sacred/all-lender matters, and clear limits on (and exculpation of) the Agent.",
+    marketPosition:
+      "Majority Lenders at 50.1% (or 66⅔% in some deals), an all-lender list of sacred rights, and standard LMA agency/exculpation provisions are market; the threshold and the sacred-rights list are the negotiation — and central to LME resilience.",
+    draftingNotes:
+      "The Majority-Lender threshold and the all-lender/sacred-rights list are the heart of amendment resilience (see Distressed: sacred rights). Align with the defaulting-lender, snooze-you-lose and transfer provisions.",
+    sample:
+      "'Majority Lenders' means a Lender or Lenders whose Commitments aggregate more than 66⅔% of Total Commitments. Except for the matters set out in Clause [ ] (Exceptions), which require the consent of all Lenders (or all affected Lenders), any term of the Finance Documents may be amended or waived with the consent of the Majority Lenders and the Company.",
+    relatedCases: [],
+    relatedTasks: ["A2", "C5"],
+  },
+  {
+    id: "cl:lev-fees",
+    doc: "leveraged",
+    section: "Fees",
+    title: "Fees (arrangement, commitment, ticking, agency)",
+    purpose:
+      "The fee suite — arrangement/upfront (and any original issue discount), commitment/ticking fee on undrawn commitments, and agency fee — that makes up the lenders' return alongside margin, and which feeds the 'all-in yield' for MFN purposes.",
+    borrowerAsk:
+      "Fees fully disclosed and capped, a low commitment fee as a percentage of margin, no exit/prepayment fees beyond any soft call, and limited OID.",
+    lenderPushback:
+      "Market arrangement fee / OID, a commitment fee at ~30–40% of margin on undrawn amounts, a ticking fee on delayed-draw commitments, and an agency fee; MFN to capture OID as part of all-in yield.",
+    marketPosition:
+      "Arrangement fee/OID plus a commitment fee (~30–40% of margin) on undrawn commitments, a ticking fee on DDTLs, and an annual agency fee are standard; fees feed the all-in yield the MFN protects.",
+    draftingNotes:
+      "Keep OID and fees within the MFN 'all-in yield' definition (see MFN) or the protection is arbitraged. Commitment/ticking fees interact with the DDTL and RCF utilisation mechanics.",
+    sample:
+      "The Borrower shall pay to each Lender a commitment fee computed at [35]% of the applicable Margin on that Lender's Available Commitment for the Availability Period, payable quarterly in arrear, on the last day of the Availability Period, and on any cancelled amount at the time of cancellation.",
+    relatedCases: [],
+    relatedTasks: ["A2"],
+  },
+  {
+    id: "cl:sec-guaranteelimits",
+    doc: "security",
+    section: "Guarantee limitations",
+    title: "Guarantee limitation language (by jurisdiction)",
+    purpose:
+      "Jurisdiction-specific limitation language that caps or qualifies a guarantee/security so it doesn't breach local financial-assistance, corporate-benefit, capital-maintenance or thin-cap rules — the practical expression of the Agreed Security Principles for each obligor's jurisdiction.",
+    borrowerAsk:
+      "Full local-law limitations (e.g. German limitation language protecting a GmbH's registered capital; French corporate-benefit / financial-assistance limits; Luxembourg guarantee caps), and no obligation to give security that triggers whitewash/assistance procedures.",
+    lenderPushback:
+      "Limitations no broader than local law strictly requires, a 'best efforts' obligation to maximise the enforceable amount, and retention of the indemnity limb where the guarantee is capped.",
+    marketPosition:
+      "Standard market limitation language for each obligor jurisdiction (German, French, Luxembourg, Dutch, etc.), scheduled to the guarantee, is set by local counsel and lightly negotiated; the amount and any 'top-up' as capital is restored are the points.",
+    draftingNotes:
+      "Driven by local counsel and the Agreed Security Principles — confirm each jurisdiction's limitation language early. A capped guarantee should preserve the indemnity limb and any top-up mechanism.",
+    sample:
+      "The guarantee given by a Guarantor incorporated in [Germany] shall be limited as set out in Schedule [ ] (Guarantee Limitations) so as not to require payment to the extent it would cause its net assets to fall below its registered share capital (Stammkapital) or otherwise breach sections 30 and 31 of the German Limited Liability Companies Act (GmbHG).",
+    relatedCases: [],
+    relatedTasks: ["A7", "A2"],
   },
 ];

@@ -15,6 +15,7 @@ export const CATEGORIES = [
   "Accessory liability",
   "Liability management / LME",
   "Remedies & penalties",
+  "Cross-border & recognition",
   "Structured credit",
   "Documentation",
   "Rates / RFR",
@@ -502,5 +503,52 @@ export const CASES = [
       "The case that tells you how hard a MAC is to invoke and how to draft and rely on one. Essential companion to the MAC clause and to Wood v Capita / Arnold v Britton on interpretation.",
     links: [],
     relatedClauses: ["cl:lev-mac"],
+  },
+
+  // ---- Cross-border & recognition ----
+  {
+    id: "case:gibbs",
+    type: "case",
+    title: "Antony Gibbs & Sons v La Société Industrielle et Commerciale des Métaux",
+    citation: "(1890) 25 QBD 399",
+    court: "Court of Appeal",
+    date: "1890-01-01",
+    category: ["Cross-border & recognition"],
+    holding:
+      "Established the 'rule in Gibbs': a debt governed by English law cannot be discharged or compromised by a foreign insolvency proceeding to which the creditor has not submitted. Only an English-law process (or the creditor's own submission/consent) can compromise an English-law debt.",
+    whyItMatters:
+      "The reason cross-border restructurings of English-law debt so often use an English scheme or Part 26A plan (or need creditor submission) — a foreign plan won't bind dissenting English-law creditors. Central to structuring international restructurings and to the choice of governing law.",
+    links: [],
+    relatedClauses: ["cl:ic-enforcement"],
+  },
+  {
+    id: "case:bakhshiyeva",
+    type: "case",
+    title: "Bakhshiyeva v Sberbank of Russia (Re OJSC Int'l Bank of Azerbaijan)",
+    citation: "[2018] EWCA Civ 2802",
+    court: "Court of Appeal",
+    date: "2018-12-18",
+    category: ["Cross-border & recognition"],
+    holding:
+      "The Court of Appeal reaffirmed the Gibbs rule: a foreign (Azerbaijani) restructuring could not, even via Cross-Border Insolvency Regulations / Model Law recognition, permanently stay enforcement of English-law debts that had not been compromised under English law. Recognition assistance does not extend to discharging English-law obligations.",
+    whyItMatters:
+      "The modern confirmation of Gibbs — foreign proceedings plus Model Law recognition still won't discharge English-law debt. Reinforces why English governing law and an English process matter in international deals.",
+    links: [],
+    relatedClauses: ["cl:ic-enforcement"],
+  },
+  {
+    id: "case:gategroup",
+    type: "case",
+    title: "Re gategroup Guarantee Ltd",
+    citation: "[2021] EWHC 304 (Ch)",
+    court: "High Court",
+    date: "2021-02-17",
+    category: ["Restructuring / Part 26A", "Cross-border & recognition"],
+    holding:
+      "Held that a Part 26A restructuring plan is an 'insolvency proceeding' and so falls within the insolvency exclusion of the Lugano Convention; the Lugano jurisdiction rules therefore did not prevent the English court sanctioning a plan affecting a Swiss-law-governed instrument with an exclusive Swiss jurisdiction clause.",
+    whyItMatters:
+      "Distinguishes Part 26A plans from schemes for jurisdictional purposes (plans are insolvency proceedings) and shows the court's willingness to exercise jurisdiction over foreign-law debt in a plan — key to using Part 26A for international groups.",
+    links: [],
+    relatedClauses: ["cl:ic-enforcement"],
   },
 ];

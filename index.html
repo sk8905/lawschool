@@ -296,6 +296,35 @@
       .ws-card-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 14px; }
       .ws-card p { font-size: 12.5px; color: var(--ink-soft); }
 
+      /* ---- global search ---- */
+      .gsearch-btn {
+        display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line-strong);
+        background: #fff; color: var(--ink-soft); padding: 7px 12px; border-radius: 8px; font-size: 13px; font-weight: 550;
+      }
+      .gsearch-btn:hover { border-color: var(--accent); color: var(--accent); }
+      .kbd { font-size: 11px; border: 1px solid var(--line-strong); border-radius: 5px; padding: 1px 5px; color: var(--ink-faint); background: #f6f7f9; }
+      .gsearch-backdrop {
+        position: fixed; inset: 0; z-index: 50; background: rgba(20, 30, 45, 0.28);
+        backdrop-filter: blur(2px); display: flex; align-items: flex-start; justify-content: center; padding: 12vh 16px 16px;
+      }
+      .gsearch { width: 100%; max-width: 560px; background: #fff; border: 1px solid var(--line-strong); border-radius: 14px; box-shadow: 0 20px 60px rgba(20,30,45,0.25); overflow: hidden; display: flex; flex-direction: column; max-height: 70vh; }
+      .gsearch-input { border: 0; border-bottom: 1px solid var(--line); padding: 16px 18px; font-size: 16px; outline: none; color: var(--ink); }
+      .gsearch-results { overflow-y: auto; padding: 6px; }
+      .gsearch-hint { padding: 22px 16px; text-align: center; color: var(--ink-faint); font-size: 13.5px; }
+      .gsearch-group { margin-bottom: 6px; }
+      .gsearch-grouphead { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); padding: 8px 12px 4px; }
+      .gsearch-row { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; border: 0; background: transparent; padding: 9px 12px; border-radius: 8px; cursor: pointer; }
+      .gsearch-row:hover { background: var(--accent-soft); }
+      .gsearch-badge { flex: none; width: 34px; height: 22px; display: grid; place-items: center; border-radius: 6px; font-size: 11.5px; font-weight: 700; }
+      .badge-task { background: #f0f7f2; color: var(--green); }
+      .badge-case { background: #eef1fa; color: #3a4a8c; }
+      .badge-clause { background: #eaf0f7; color: var(--accent); }
+      .gsearch-rowtitle { flex: 1; font-size: 13.5px; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .gsearch-rowsub { flex: none; font-size: 11.5px; color: var(--ink-faint); }
+      .gsearch-foot { border-top: 1px solid var(--line); padding: 8px 14px; font-size: 11.5px; color: var(--ink-faint); }
+      .focus-flash { animation: flash 1.6s ease; }
+      @keyframes flash { 0%, 40% { box-shadow: 0 0 0 3px var(--accent); } 100% { box-shadow: none; } }
+
       /* ---- misc ---- */
       .empty { text-align: center; color: var(--ink-faint); padding: 40px; font-size: 14px; }
       .footer { border-top: 1px solid var(--line); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 12px; color: var(--ink-faint); background: #fff; flex-wrap: wrap; }

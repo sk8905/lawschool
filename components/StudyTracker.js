@@ -1,6 +1,6 @@
 // components/StudyTracker.js — Module 1: the 12-week plan.
 // Views: Kanban (by status), By week, By workstream. Progress bars per stream.
-import { html, useMemo } from "../lib/preact.js";
+import { html, useMemo, useEffect } from "../lib/preact.js";
 import { WORKSTREAMS, TASKS } from "../data/plan.js";
 import { CASES } from "../data/cases.js";
 import { CLAUSES } from "../data/playbook.js";
@@ -17,10 +17,24 @@ const wsById = Object.fromEntries(WORKSTREAMS.map((w) => [w.id, w]));
 const caseById = Object.fromEntries(CASES.map((c) => [c.id, c]));
 const clauseById = Object.fromEntries(CLAUSES.map((c) => [c.id, c]));
 
-export function StudyTracker({ navigate, search }) {
+export function StudyTracker({ navigate, search, focusId, clearFocus }) {
   const [overlay, patch] = useOverlay(KEYS.tasks);
   const [view, setView] = usePref("planView", "week");
   const [streamFilter, setStreamFilter] = usePref("planStream", "all");
+
+  // when arriving via a cross-link / global search, reveal and flash the task
+  useEffect(() => {
+    if (!focusId) return;
+    setView("week");
+    setStreamFilter("all");
+    const el = document.getElementById(`task-${focusId}`);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.classList.add("focus-flash");
+      const t = setTimeout(() => el.classList.remove("focus-flash"), 1600);
+      return () => clearTimeout(t);
+    }
+  }, [focusId]);
 
   const tasks = useMemo(
     () => TASKS.map((t) => ({ ...t, ...(overlay[t.id] || {}) })),
@@ -112,7 +126,7 @@ function TaskCard({ task, statusOf, cycle, patch, navigate, showWeek = true }) {
   const w = wsById[task.workstream];
   const st = statusOf(task);
   return html`
-    <div class=${`card task-${st}`}>
+    <div class=${`card task-${st}`} id=${`task-${task.id}`}>
       <div class="card-top">
         <div class="card-tags">
           <${Chip} tone="ws" title=${w.title}><span class="dot" style=${`background:${w.color}`}></span>${task.workstream}<//>

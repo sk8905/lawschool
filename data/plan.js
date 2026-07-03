@@ -321,6 +321,22 @@ export const TASKS = [
     relatedCases: ["case:deepocean", "case:virginactive", "case:houst", "case:gas"],
     relatedClauses: ["cl:ic-enforcement"],
   },
+  {
+    id: "B10",
+    workstream: "B",
+    week: 2,
+    effort: 2,
+    title: "Cross-border recognition & the Gibbs rule",
+    detail:
+      "Understand why English governing law and an English process matter in international restructurings: the rule in Gibbs (English-law debt not discharged by a foreign proceeding), its modern confirmation in Bakhshiyeva, and gategroup (a Part 26A plan is an insolvency proceeding for jurisdiction). Essential when advising on cross-border deals and enforcement.",
+    resources: [
+      "Antony Gibbs & Sons v La Société Industrielle (1890) 25 QBD 399",
+      "Bakhshiyeva v Sberbank of Russia [2018] EWCA Civ 2802",
+      "Re gategroup Guarantee Ltd [2021] EWHC 304 (Ch)",
+    ],
+    relatedCases: ["case:gibbs", "case:bakhshiyeva", "case:gategroup"],
+    relatedClauses: ["cl:ic-enforcement"],
+  },
 
   // ---- Workstream C — Product Breadth ----
   {
