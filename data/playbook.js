@@ -1362,4 +1362,86 @@ export const CLAUSES = [
     relatedCases: [],
     relatedTasks: ["A7", "A2"],
   },
+
+  // ==== Sharing, market disruption, insurance & perfection ====
+  {
+    id: "cl:lev-sharing",
+    doc: "leveraged",
+    section: "Sharing among lenders",
+    title: "Pro rata payments & the sharing clause",
+    purpose:
+      "If a Lender recovers more than its pro rata share of a payment (e.g. by set-off or separate suit), it shares the excess with the other Lenders so all are treated rateably. A core protection now central to the liability-management debate.",
+    borrowerAsk:
+      "(Not primarily a borrower issue.) The borrower's concern is that the sharing / pro rata regime doesn't impede permitted debt buybacks.",
+    lenderPushback:
+      "(Among lenders) broad sharing so no Lender can steal a march via set-off or separate recovery; the contested carve-outs are those on which non-pro-rata buybacks and uptiers rely.",
+    marketPosition:
+      "A sharing clause requiring redistribution of non-pro-rata recoveries is standard LMA; the carve-outs from pro rata sharing (open-market purchases, non-pro-rata new money) are exactly the LME battleground — see Serta and the sacred-rights clause.",
+    draftingNotes:
+      "Whether pro rata sharing is itself an all-lender / sacred right, and how tightly its exceptions are drawn, largely determines uptier resilience. Reconcile with the open-market-purchase and sacred-rights provisions.",
+    sample:
+      "If a Lender (a 'Recovering Lender') receives or recovers any amount otherwise than through the Agent and applies it against the Liabilities, it shall pay to the Agent an amount equal to the excess over its pro rata share, for redistribution so that each Lender receives its rateable proportion.",
+    relatedCases: ["case:serta"],
+    relatedTasks: ["A3", "C5"],
+  },
+  {
+    id: "cl:lev-mktdisruption",
+    doc: "leveraged",
+    section: "Interest — market disruption",
+    title: "Market disruption & cost of funds",
+    purpose:
+      "The fallback where the reference rate is unavailable or lenders' cost of funds exceeds it: lenders may substitute their cost of funds for the affected period — a backstop against funding-market dislocation.",
+    borrowerAsk:
+      "A high threshold before disruption can be invoked (Lenders representing a large percentage of the Loan), an obligation to negotiate a substitute basis, and a short duration.",
+    lenderPushback:
+      "A workable disruption trigger, the ability to charge cost of funds during disruption, and a substitute-basis negotiation with reversion if none is agreed.",
+    marketPosition:
+      "Market-disruption and cost-of-funds provisions are standard LMA boilerplate, rarely invoked; the trigger (percentage of Lenders) and mechanics are lightly negotiated. RFR-native forms largely fold this into the rate-fallback waterfall.",
+    draftingNotes:
+      "With RFRs, market disruption is largely subsumed by the rate-fallback waterfall (see Interest). Confirm the disruption threshold and substitute-basis mechanics are consistent with the RFR conventions.",
+    sample:
+      "If a Market Disruption Event occurs, the rate of interest on the relevant Lender's share of the Loan for that Interest Period shall be the sum of the Margin and that Lender's cost of funds (from whatever source it may reasonably select) for that Interest Period.",
+    relatedCases: [],
+    relatedTasks: ["A2", "D1"],
+  },
+  {
+    id: "cl:ref-insurance",
+    doc: "ref",
+    section: "Insurance",
+    title: "Insurance & reinstatement",
+    purpose:
+      "Requires the property to be insured (full reinstatement value, loss of rent, third-party liability) with approved insurers, the lender noted as composite insured / first loss payee, and proceeds applied to reinstatement or prepayment — protecting the security against physical risk.",
+    borrowerAsk:
+      "Reinstatement of the property with proceeds (rather than mandatory prepayment) where viable, a de minimis threshold below which proceeds are released, and flexibility on insurer selection.",
+    lenderPushback:
+      "Cover for full reinstatement value plus loss of rent for an adequate period, the Security Agent as composite insured / first loss payee, and application of material proceeds to reinstatement (on conditions) or, failing that, prepayment.",
+    marketPosition:
+      "Full-reinstatement and loss-of-rent cover with the lender noted and proceeds applied to reinstatement or prepayment is standard REF; the reinstatement-vs-prepayment threshold and conditions are negotiated.",
+    draftingNotes:
+      "Coordinate the insurance-proceeds waterfall with the mandatory-prepayment and cash-management provisions. Ensure the lender is a composite insured with a non-vitiation clause so an insured's breach doesn't void cover for the lender.",
+    sample:
+      "The Borrower shall insure the Properties with an Approved Insurer on a full reinstatement basis and against loss of Rental Income for not less than [three] years, and shall procure that the Security Agent is named as composite insured and first loss payee and that the policy contains a non-vitiation clause.",
+    relatedCases: [],
+    relatedTasks: ["A1"],
+  },
+  {
+    id: "cl:sec-perfection",
+    doc: "security",
+    section: "Perfection",
+    title: "Perfection & registration",
+    purpose:
+      "The steps needed to perfect security against third parties and an insolvency officeholder — registration at Companies House within 21 days, notices of assignment/charge to counterparties and account banks, delivery/control of certificated assets, and jurisdiction-specific filings.",
+    borrowerAsk:
+      "Perfection steps limited to those legally necessary, no operationally disruptive notices except on default, and reasonable timeframes.",
+    lenderPushback:
+      "All perfection steps taken promptly — Companies House registration within 21 days, notices served and acknowledged, share certificates and blank transfers delivered, foreign filings made — with a 'further assurance' obligation to do whatever perfection requires.",
+    marketPosition:
+      "Prompt Companies House registration (the 21-day period is critical), plus notices and delivery of certificated assets, is standard and non-negotiable in substance; the operational triggers (notice at closing vs on default) are negotiated.",
+    draftingNotes:
+      "The 21-day Companies House deadline is a hard trap — diarise it; a charge not registered in time is void against an administrator/liquidator and other creditors. Perfecting an assignment needs notice to the counterparty; control is needed for a fixed charge over accounts (Spectrum).",
+    sample:
+      "Each Obligor shall promptly take all steps necessary to perfect the Transaction Security, including registration at Companies House within 21 days of creation of any registrable charge, service of notice of each assignment on the relevant counterparty, and delivery of all certificates of title and share certificates.",
+    relatedCases: ["case:spectrum"],
+    relatedTasks: ["A7"],
+  },
 ];

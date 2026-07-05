@@ -16,6 +16,7 @@ export function Playbook({ navigate, search, focusId, clearFocus }) {
   const [overlay, patch] = useOverlay(KEYS.clauses);
   const { custom, addClause, remove } = useCustom();
   const [activeDoc, setActiveDoc] = usePref("pbDoc", "leveraged");
+  const [mode, setMode] = usePref("pbMode", "full");
   const [openId, setOpenId] = useState(null);
   const [showAdd, setShowAdd] = useState(false);
 
@@ -60,6 +61,15 @@ export function Playbook({ navigate, search, focusId, clearFocus }) {
 
       ${showAdd && html`<${AddClause} activeDoc=${activeDoc} onAdd=${(entry) => { addClause(entry); setShowAdd(false); setActiveDoc(entry.doc); setOpenId(entry.id); }} />`}
 
+      <div class="toolbar no-print">
+        <div class="segmented">
+          ${[["full", "Full"], ["positions", "Positions"], ["wording", "Wording"]].map(
+            ([v, label]) => html`<button class=${`seg${mode === v ? " seg-on" : ""}`} onClick=${() => setMode(v)}>${label}</button>`
+          )}
+        </div>
+        <span class="mode-note">${mode === "positions" ? "Borrower ask vs lender pushback only — negotiation prep." : mode === "wording" ? "Illustrative drafting only." : "All detail per clause."}</span>
+      </div>
+
       <div class="playbook">
         <nav class="doc-rail no-print">
           ${DOCS.map((d) => {
@@ -76,15 +86,18 @@ export function Playbook({ navigate, search, focusId, clearFocus }) {
           ${searching && html`<p class="search-note">Showing matches for "${q}" across all documents.</p>`}
           ${filtered.length === 0
             ? html`<${Empty}>No clauses here yet.<//>`
-            : filtered.map((c) => ClauseCard({ c, open: searching || openId === c.id, onToggle: () => { setOpenId(openId === c.id ? null : c.id); if (clearFocus) clearFocus(); }, patch, navigate, remove }))}
+            : filtered.map((c) => ClauseCard({ c, open: searching || openId === c.id, onToggle: () => { setOpenId(openId === c.id ? null : c.id); if (clearFocus) clearFocus(); }, patch, navigate, remove, mode }))}
         </div>
       </div>
     </div>
   `;
 }
 
-function ClauseCard({ c, open, onToggle, patch, navigate, remove }) {
+function ClauseCard({ c, open, onToggle, patch, navigate, remove, mode = "full" }) {
   const docTitle = (DOCS.find((d) => d.id === c.doc) || {}).short || c.doc;
+  const showFull = mode === "full";
+  const showPositions = mode === "full" || mode === "positions";
+  const showWording = mode === "full" || mode === "wording";
   const header = html`
     <div class="clause-head">
       <div>
@@ -100,22 +113,24 @@ function ClauseCard({ c, open, onToggle, patch, navigate, remove }) {
   return html`
     <div class="clause">
       <${Accordion} open=${open} onToggle=${onToggle} header=${header}>
-        <div class="field"><span class="field-label">Purpose</span><p>${c.purpose}</p></div>
-        <div class="ask-grid">
-          <div class="field ask"><span class="field-label">Borrower ask</span><p>${c.borrowerAsk}</p></div>
-          <div class="field push"><span class="field-label">Lender pushback</span><p>${c.lenderPushback}</p></div>
-        </div>
-        <div class="field"><span class="field-label">Market position</span><p>${c.marketPosition}</p></div>
-        <div class="field"><span class="field-label">Drafting notes</span><p>${c.draftingNotes}</p></div>
-        ${(() => {
-          const sample = c.sample || SAMPLES[c.id];
-          return sample
-            ? html`<div class="field sample">
-                <span class="field-label">Illustrative wording <span class="sample-caveat">— starter language to adapt, not the LMA form</span></span>
-                <pre class="sample-text">${sample}</pre>
-              </div>`
-            : null;
-        })()}
+        ${showFull && html`<div class="field"><span class="field-label">Purpose</span><p>${c.purpose}</p></div>`}
+        ${showPositions &&
+          html`<div class="ask-grid">
+            <div class="field ask"><span class="field-label">Borrower ask</span><p>${c.borrowerAsk}</p></div>
+            <div class="field push"><span class="field-label">Lender pushback</span><p>${c.lenderPushback}</p></div>
+          </div>`}
+        ${showFull && html`<div class="field"><span class="field-label">Market position</span><p>${c.marketPosition}</p></div>`}
+        ${showFull && html`<div class="field"><span class="field-label">Drafting notes</span><p>${c.draftingNotes}</p></div>`}
+        ${showWording &&
+          (() => {
+            const sample = c.sample || SAMPLES[c.id];
+            return sample
+              ? html`<div class="field sample">
+                  <span class="field-label">Illustrative wording <span class="sample-caveat">— starter language to adapt, not the LMA form</span></span>
+                  <pre class="sample-text">${sample}</pre>
+                </div>`
+              : null;
+          })()}
         ${!!(c.relatedCases?.length || c.relatedTasks?.length) &&
           html`<div class="crosslinks no-print">
             ${(c.relatedCases || []).map((id) => {

@@ -551,4 +551,36 @@ export const CASES = [
     links: [],
     relatedClauses: ["cl:ic-enforcement"],
   },
+
+  // ---- Fund finance (product/market developments) ----
+  {
+    id: "dev:fundfinance-docs",
+    type: "market",
+    title: "Fund finance documentation & subscription-line practice",
+    citation: "—",
+    court: "Market / LMA",
+    date: "2025-01-01",
+    category: ["Documentation", "Market structure"],
+    holding:
+      "The LMA and market have developed standardised documentation for fund finance. Subscription (capital-call) lines are secured on the uncalled commitments, the right to call capital and the account into which capital is funded; the key legal issues are the enforceability of security over uncalled commitments, LPA borrowing limits and investor letters, and 'included/excluded investor' concentration.",
+    whyItMatters:
+      "The documentation and security architecture differs fundamentally from corporate/leveraged lending — you take security over the right to call capital, not operating assets. Understanding subscription-line security is the entry point to the fund-finance product.",
+    links: [],
+    relatedClauses: [],
+  },
+  {
+    id: "dev:navfinance-issues",
+    type: "market",
+    title: "NAV facility legal issues (recourse, LPA limits, investor consent)",
+    citation: "—",
+    court: "Market",
+    date: "2025-06-01",
+    category: ["Market structure"],
+    holding:
+      "NAV facilities are secured on, and sized against, the net asset value of a fund's underlying portfolio — typically via security over distributions, holding-vehicle equity and accounts. Key legal and diligence issues include recourse to the underlying assets, LPA borrowing / leverage limits, cross-collateralisation, valuation methodology and — following LP scrutiny in 2024–25 — investor consent and disclosure.",
+    whyItMatters:
+      "NAV finance is the fund-finance growth story and the area of greatest legal complexity and LP sensitivity — where your credit-fund and structuring experience is most valuable. Know the recourse / LPA / consent issues to advise sponsors and lenders.",
+    links: [],
+    relatedClauses: [],
+  },
 ];
