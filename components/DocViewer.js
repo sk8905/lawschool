@@ -1,9 +1,10 @@
 // components/DocViewer.js — Documents module: annotated model agreements.
 import { html, useMemo, useState, useEffect } from "../lib/preact.js";
-import { DOCUMENTS, DOC_ROADMAP } from "../data/documents.js";
+import { DOCUMENTS } from "../data/documents.js";
 import { CLAUSES } from "../data/playbook.js";
 import { CASES } from "../data/cases.js";
 import { useOverlay, usePref, KEYS } from "../lib/store.js";
+import { downloadWord } from "../lib/wordexport.js";
 import { Chip, LinkChip, Notes, Accordion, Empty } from "./Shared.js";
 
 const clauseById = Object.fromEntries(CLAUSES.map((c) => [c.id, c]));
@@ -54,6 +55,7 @@ export function DocViewer({ navigate, search, focusId, clearFocus }) {
           <p class="lede">Annotated model agreements, clause by clause — what each section does, representative wording, and the considerations, cross-linked to the playbook and case law.</p>
         </div>
         <div class="head-actions no-print">
+          <button class="btn" onClick=${() => downloadWord(doc)}>⬇ Word</button>
           <button class="btn" onClick=${() => window.print()}>⎙ Print</button>
         </div>
       </div>
@@ -69,11 +71,6 @@ export function DocViewer({ navigate, search, focusId, clearFocus }) {
               <span>${d.short}</span><span class="rail-count">${d.sections.length}</span>
             </button>`
           )}
-          ${DOC_ROADMAP.length > 1 &&
-            html`<div class="doc-roadmap">
-              <div class="doc-roadmap-head">Roadmap</div>
-              ${DOC_ROADMAP.map((r) => html`<div class="doc-roadmap-item">${r}</div>`)}
-            </div>`}
         </nav>
 
         <div class="clause-area">
