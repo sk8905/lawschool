@@ -4,18 +4,21 @@ import { html, render, useState, useEffect, useMemo, useCallback } from "./lib/p
 import { WORKSTREAMS, TASKS } from "./data/plan.js";
 import { CASES } from "./data/cases.js";
 import { CLAUSES } from "./data/playbook.js";
+import { DOCUMENTS } from "./data/documents.js";
 import { useOverlay, useCustom, KEYS, exportAll, importAll, clearAll } from "./lib/store.js";
 import { whoami, syncNow, isApplying, LOGOUT_URL } from "./lib/sync.js";
 import { ProgressBar, Chip } from "./components/Shared.js";
 import { StudyTracker } from "./components/StudyTracker.js";
 import { CaseTracker } from "./components/CaseTracker.js";
 import { Playbook } from "./components/Playbook.js";
+import { DocViewer } from "./components/DocViewer.js";
 
 const TABS = [
   { id: "dashboard", label: "Dashboard" },
   { id: "plan", label: "Study plan" },
   { id: "cases", label: "Case law" },
   { id: "playbook", label: "Playbook" },
+  { id: "documents", label: "Documents" },
 ];
 
 function parseHash() {
@@ -92,6 +95,7 @@ function App() {
         ${tab === "plan" && html`<${StudyTracker} navigate=${navigate} search=${search} focusId=${route.focusId} clearFocus=${clearFocus} />`}
         ${tab === "cases" && html`<${CaseTracker} navigate=${navigate} search=${search} focusId=${route.focusId} clearFocus=${clearFocus} />`}
         ${tab === "playbook" && html`<${Playbook} navigate=${navigate} search=${search} focusId=${route.focusId} clearFocus=${clearFocus} />`}
+        ${tab === "documents" && html`<${DocViewer} navigate=${navigate} search=${search} focusId=${route.focusId} clearFocus=${clearFocus} />`}
       </main>
 
       <footer class="footer no-print">
@@ -121,11 +125,17 @@ function GlobalSearch({ onClose, navigate }) {
   const clauseHits = !query
     ? []
     : CLAUSES.filter((c) => match(`${c.title} ${c.section} ${c.purpose} ${c.borrowerAsk} ${c.lenderPushback} ${c.marketPosition} ${c.draftingNotes}`)).slice(0, 6);
-  const total = taskHits.length + caseHits.length + clauseHits.length;
+  const docHits = !query
+    ? []
+    : DOCUMENTS.flatMap((d) => d.sections.map((s) => ({ ...s, docShort: d.short })))
+        .filter((s) => match(`${s.no} ${s.title} ${s.group} ${s.purpose} ${s.annotation} ${s.illustrative}`))
+        .slice(0, 6);
+  const total = taskHits.length + caseHits.length + clauseHits.length + docHits.length;
   const openFirst = () => {
     if (taskHits[0]) go("plan", taskHits[0].id);
     else if (caseHits[0]) go("cases", caseHits[0].id);
     else if (clauseHits[0]) go("playbook", clauseHits[0].id);
+    else if (docHits[0]) go("documents", docHits[0].id);
   };
   return html`
     <div class="gsearch-backdrop" onClick=${onClose}>
@@ -166,6 +176,15 @@ function GlobalSearch({ onClose, navigate }) {
                 <span class="gsearch-badge badge-clause">§</span>
                 <span class="gsearch-rowtitle">${c.title}</span>
                 <span class="gsearch-rowsub">${c.section}</span>
+              </button>`)}
+            </div>`}
+          ${docHits.length > 0 &&
+            html`<div class="gsearch-group">
+              <div class="gsearch-grouphead">Documents · ${docHits.length}</div>
+              ${docHits.map((s) => html`<button class="gsearch-row" onClick=${() => go("documents", s.id)}>
+                <span class="gsearch-badge badge-doc">¶</span>
+                <span class="gsearch-rowtitle">${s.title}</span>
+                <span class="gsearch-rowsub">${s.docShort} · Cl ${s.no}</span>
               </button>`)}
             </div>`}
         </div>
