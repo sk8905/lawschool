@@ -4,6 +4,7 @@ import { html, useMemo, useState, useEffect, useRef } from "../lib/preact.js";
 import { CASES, CATEGORIES } from "../data/cases.js";
 import { CLAUSES } from "../data/playbook.js";
 import { useOverlay, useCustom, usePref, KEYS } from "../lib/store.js";
+import { downloadCasesWord } from "../lib/wordexport.js";
 import { Chip, LinkChip, Notes, Accordion, Empty } from "./Shared.js";
 
 const TYPES = [
@@ -68,7 +69,10 @@ export function CaseTracker({ navigate, search, focusId, clearFocus }) {
             ${all.length} entries · ${readCount} marked read. Restructuring / Part 26A is the priority cluster. Add your own entries to keep it living.
           </p>
         </div>
-        <button class="btn btn-primary" onClick=${() => setShowAdd((s) => !s)}>${showAdd ? "Close" : "+ Add entry"}</button>
+        <div class="head-actions">
+          <button class="btn" onClick=${() => downloadCasesWord("Case Law and Developments", filtered)}>⬇ Word</button>
+          <button class="btn btn-primary" onClick=${() => setShowAdd((s) => !s)}>${showAdd ? "Close" : "+ Add entry"}</button>
+        </div>
       </div>
 
       ${showAdd && html`<${AddEntry} onAdd=${(entry) => { addCase(entry); setShowAdd(false); setOpenId(entry.id); }} />`}

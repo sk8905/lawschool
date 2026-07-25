@@ -5,6 +5,7 @@ import { WORKSTREAMS, TASKS } from "../data/plan.js";
 import { CASES } from "../data/cases.js";
 import { CLAUSES } from "../data/playbook.js";
 import { useOverlay, usePref, KEYS } from "../lib/store.js";
+import { downloadPlanWord } from "../lib/wordexport.js";
 import { ProgressBar, Chip, LinkChip, Notes, Accordion, Empty } from "./Shared.js";
 
 const STATUSES = [
@@ -66,6 +67,14 @@ export function StudyTracker({ navigate, search, focusId, clearFocus }) {
         <div>
           <h2>Study plan</h2>
           <p class="lede">The 12-week refresher across five parallel workstreams. Mark tasks as you go — progress persists in your browser.</p>
+        </div>
+        <div class="head-actions no-print">
+          <button class="btn" onClick=${() => {
+            const items = [...filtered]
+              .sort((a, b) => a.workstream.localeCompare(b.workstream) || a.week - b.week)
+              .map((t) => ({ group: `${t.workstream} — ${(wsById[t.workstream] || {}).title || ""}`, week: t.week, effort: t.effort, title: t.title, detail: t.detail, resources: t.resources }));
+            downloadPlanWord("Finance Law Refresher — 12-Week Study Plan", items);
+          }}>⬇ Word</button>
         </div>
       </div>
 
