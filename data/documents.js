@@ -1207,4 +1207,249 @@ export const DOCUMENTS = [
       },
     ],
   },
+
+  // ============================================================
+  // 7. High-Yield Notes Indenture
+  // ============================================================
+  {
+    id: "doc:hy-indenture",
+    area: "High Yield",
+    title: "High-Yield Notes Indenture",
+    short: "High-Yield Notes",
+    summary:
+      "An illustrative model high-yield senior (secured) notes indenture — a bond, not a loan — with a fixed coupon and bullet maturity, a non-call/call schedule and change-of-control offer, and incurrence-based covenants (a fixed-charge coverage test rather than maintenance covenants). Note that HY indentures are frequently governed by New York law.",
+    sections: [
+      {
+        id: "sec:hy:01", no: "1", title: "Definitions and Interpretation", group: "Interpretation",
+        purpose: "Defines the indenture vocabulary — Consolidated EBITDA, the Fixed Charge Coverage Ratio, the builder / 'available amount' basket, Permitted Liens and Permitted Investments.",
+        illustrative: "'Fixed Charge Coverage Ratio' means the ratio of Consolidated EBITDA to Consolidated Fixed Charges for the most recent four fiscal quarters, calculated on a pro forma basis for the relevant transaction.",
+        annotation: "Bond definitions are cousins of leveraged-loan definitions but with their own conventions (e.g. the FCCR incurrence test). HY and loan documents in the same capital structure should be reconciled ('covenant conformity').",
+        relatedClauses: ["cl:lev-ebitda"], relatedCases: [],
+      },
+      {
+        id: "sec:hy:02", no: "2", title: "The Notes — Issuance, Ranking and Maturity", group: "The Notes",
+        purpose: "Issues the notes, fixes their ranking (senior secured or senior, pari with or subordinated to the loans) and their fixed coupon and bullet maturity.",
+        illustrative: "The Issuer issues [ ]% Senior Secured Notes due [ ] in an aggregate principal amount of [ ]; the Notes bear interest at [ ]% per annum payable semi-annually and mature on the Maturity Date, and rank pari passu with the Issuer's other senior secured obligations.",
+        annotation: "Fixed-rate, bullet, semi-annual — unlike a floating, amortising loan. Ranking and the security/guarantee package are shared with the loans under the intercreditor.",
+        relatedClauses: ["cl:ic-ranking", "cl:lev-interest"], relatedCases: [],
+      },
+      {
+        id: "sec:hy:03", no: "3", title: "Optional Redemption and Make-Whole", group: "Redemption",
+        purpose: "The call protection — a non-call period, then a declining call premium schedule — plus a make-whole for early redemption and an equity clawback for a portion redeemable from IPO proceeds.",
+        illustrative: "The Notes are non-callable until [ ]; thereafter redeemable at the premiums in the redemption table; before the first call date, redeemable at a make-whole price (the greater of 100% and a T+[50]bps discounted value); and up to [40]% redeemable from the proceeds of an equity offering at [par plus coupon].",
+        annotation: "Call protection is the bond analogue of soft call — it protects the investor's yield. The make-whole and equity clawback are heavily standardised.",
+        relatedClauses: ["cl:lev-voluntaryprepay"], relatedCases: [],
+      },
+      {
+        id: "sec:hy:04", no: "4", title: "Change of Control", group: "Redemption",
+        purpose: "On a change of control, the Issuer must offer to repurchase the notes at 101% of principal plus accrued interest (a put, not a call), sometimes with a portability exception.",
+        illustrative: "Upon a Change of Control, the Issuer shall make an offer to repurchase all Notes at 101% of principal plus accrued interest; no such offer is required if, on a pro forma basis, the Consolidated Net Leverage Ratio does not exceed the ratio at issuance (portability).",
+        annotation: "The 101% change-of-control put is a defining HY feature; portability (survival of the bonds on a sale) mirrors the loan concept and is a genuine issuer win.",
+        relatedClauses: ["cl:ig-coc", "cl:lev-portability"], relatedCases: [],
+      },
+      {
+        id: "sec:hy:05", no: "5", title: "Guarantees and Security", group: "The Notes",
+        purpose: "Guarantees from the same obligor group as the loans and (for secured notes) shared security held under the intercreditor, subject to agreed security principles.",
+        illustrative: "The Notes are guaranteed on a senior basis by each Guarantor and secured by the shared Collateral, in each case subject to the Agreed Security Principles and the terms of the Intercreditor Agreement.",
+        annotation: "The notes plug into the same guarantee/security/intercreditor architecture as the loans; the release and enforcement regime lives in the ICA.",
+        relatedClauses: ["cl:sec-guarantee", "cl:ic-ranking"], relatedCases: [],
+      },
+      {
+        id: "sec:hy:06", no: "6", title: "Limitation on Indebtedness", group: "Covenants",
+        purpose: "The debt covenant — incurrence-based: additional debt is permitted only if, pro forma, the Fixed Charge Coverage Ratio is met, plus a suite of permitted-debt baskets.",
+        illustrative: "The Issuer shall not incur Indebtedness unless, on a pro forma basis, the Fixed Charge Coverage Ratio would be at least 2.00:1, save for Indebtedness incurred under the Permitted Debt baskets (including a credit-facility basket and a general basket).",
+        annotation: "Incurrence (tested only when you act) vs maintenance (tested every period) is the key HY-vs-loan distinction. The ratio debt plus baskets is the debt capacity — model it in aggregate.",
+        relatedClauses: ["cl:lev-baskets", "cl:lev-incremental"], relatedCases: [],
+      },
+      {
+        id: "sec:hy:07", no: "7", title: "Limitation on Restricted Payments", group: "Covenants",
+        purpose: "The restricted-payments covenant — dividends, junior-debt prepayments and investments permitted out of a builder ('available amount') basket that grows with cumulative consolidated net income, plus fixed baskets.",
+        illustrative: "The Issuer shall not make a Restricted Payment unless no Default exists, the FCCR incurrence test is met, and the payment is within the Available Amount (building at 50% of Consolidated Net Income from the Issue Date) or a permitted RP basket.",
+        annotation: "The builder basket is the HY hallmark; the aggregate of the RP, investment and 'permitted payments' baskets is where value can leak. Reconcile with the loan RP covenant.",
+        relatedClauses: ["cl:lev-rp"], relatedCases: [],
+      },
+      {
+        id: "sec:hy:08", no: "8", title: "Liens, Asset Sales and Affiliate Transactions", group: "Covenants",
+        purpose: "The negative-pledge (permitted liens), the asset-sale covenant (fair value, minimum cash, and application of net proceeds to an offer or reinvestment), and the arm's-length affiliate-transactions covenant.",
+        illustrative: "The Issuer shall not create Liens other than Permitted Liens; may only make an Asset Sale for fair market value with at least 75% cash consideration, applying Net Proceeds to repay senior debt or reinvest, failing which to a repurchase offer; and shall transact with Affiliates on arm's-length terms.",
+        annotation: "The asset-sale 'offer' mechanic and the liens basket are standard; watch the interplay with unrestricted subsidiaries and the drop-down / J.Crew analysis.",
+        relatedClauses: ["cl:sec-negpledge", "cl:lev-mandprepay", "cl:ds-unrestricted"], relatedCases: [],
+      },
+      {
+        id: "sec:hy:09", no: "9", title: "Events of Default and Acceleration", group: "Default and Amendment",
+        purpose: "The events of default — non-payment (with a 30-day grace for interest), covenant breach (usually after notice and a cure period), cross-acceleration, and insolvency — and acceleration by the trustee or 25% of holders.",
+        illustrative: "An Event of Default includes failure to pay interest within 30 days of the due date, failure to comply with a covenant for [60] days after notice, cross-acceleration above the Threshold, and certain insolvency events; on which the Trustee or holders of at least 25% in principal amount may accelerate.",
+        annotation: "Bond EoDs are more forgiving than loans (grace and notice periods) and acceleration needs a holder threshold. The 'no-action' clause limits individual holder enforcement.",
+        relatedClauses: ["cl:lev-eod"], relatedCases: [],
+      },
+      {
+        id: "sec:hy:10", no: "10", title: "Amendments, Waivers and Sacred Rights", group: "Default and Amendment",
+        purpose: "The consent thresholds — most amendments need a majority in principal amount; 'money terms' (principal, interest, maturity, ranking) need each affected holder.",
+        illustrative: "The Indenture may be amended with the consent of holders of a majority in principal amount, save that no amendment may, without the consent of each affected holder, reduce the principal or interest, extend the maturity, or subordinate the Notes or release all or substantially all the Collateral or Guarantees.",
+        annotation: "The 'sacred rights' of noteholders are the money terms plus collateral/guarantee releases — the same LME battleground seen in loans (Serta).",
+        relatedClauses: ["cl:ds-sacredrights"], relatedCases: ["case:serta"],
+      },
+      {
+        id: "sec:hy:11", no: "11", title: "The Trustee, Governing Law and Notes vs Loans", group: "Boilerplate",
+        purpose: "The trustee's role and protections, the governing law (frequently New York, sometimes English for European HY), and the practical differences between bond and loan documentation.",
+        illustrative: "The Trustee's duties are limited to those expressly set out and it owes no fiduciary duty; this Indenture is governed by the laws of the State of New York [or England and Wales]. The Notes are freely transferable securities subject to the applicable securities laws.",
+        annotation: "Key bond/loan differences: incurrence vs maintenance covenants; a dispersed, transferable bondholder base; the trustee and no-action clause; and (often) New York governing law and US securities-law overlay.",
+        relatedClauses: ["cl:lev-agency"], relatedCases: [],
+      },
+    ],
+  },
+
+  // ============================================================
+  // 8. Asset-Based Lending (ABL) Facility Agreement
+  // ============================================================
+  {
+    id: "doc:abl-fa",
+    area: "ABL",
+    title: "Asset-Based Lending (ABL) Facility Agreement",
+    short: "Asset-Based Lending",
+    summary:
+      "An illustrative model asset-based revolving facility — availability driven by a borrowing base of eligible receivables and inventory (rather than cash-flow leverage), with advance rates and reserves, springing cash dominion, field exams and appraisals, a springing fixed-charge covenant, and a split-lien intercreditor with any term-loan lenders.",
+    sections: [
+      {
+        id: "sec:abl:01", no: "1", title: "Definitions and the Borrowing Base", group: "Interpretation",
+        purpose: "Defines the borrowing-base machinery — Eligible Receivables, Eligible Inventory, Advance Rates, Reserves and Availability — which govern how much can be drawn.",
+        illustrative: "'Borrowing Base' means, at any time, the sum of [85]% of Eligible Receivables and [65]% of the net orderly liquidation value of Eligible Inventory, less Reserves; 'Availability' means the lesser of the Commitments and the Borrowing Base.",
+        annotation: "ABL is lent against assets, not leverage. The eligibility criteria, advance rates and (discretionary) reserves are where the lender controls credit — read them closely.",
+        relatedClauses: ["cl:sc-warehouse", "cl:sc-eligibility"], relatedCases: [],
+      },
+      {
+        id: "sec:abl:02", no: "2", title: "The Revolving Facility and Utilisation", group: "The Facility",
+        purpose: "A revolving facility (with swingline and letter-of-credit sublimits) available up to the lesser of commitments and the borrowing base, drawn against a borrowing base certificate.",
+        illustrative: "The Lenders make available a revolving credit facility; a Utilisation may not be made if, after it, the Loans would exceed Availability. The Borrower shall deliver a Borrowing Base Certificate [weekly/monthly] and on each Utilisation.",
+        annotation: "Availability fluctuates with the collateral. Overadvances (loans exceeding the base) are tightly controlled and usually an immediate repayment event.",
+        relatedClauses: ["cl:sc-warehouse", "cl:lev-cp"], relatedCases: [],
+      },
+      {
+        id: "sec:abl:03", no: "3", title: "Interest, Fees and Repayment", group: "Costs of Utilisation",
+        purpose: "Margin plus the compounded RFR, an unused-line (commitment) fee, LC fees, and repayment on demand of any amount exceeding availability.",
+        illustrative: "Interest accrues at the Margin plus the Compounded Reference Rate; an unused line fee accrues on the undrawn Commitments; and the Borrower shall immediately repay any amount by which the Loans exceed Availability (an Overadvance).",
+        annotation: "Pricing is typically tighter than cash-flow lending given the collateral. The overadvance-repayment mechanic is the core discipline.",
+        relatedClauses: ["cl:lev-fees"], relatedCases: [],
+      },
+      {
+        id: "sec:abl:04", no: "4", title: "Security — Receivables, Inventory and Accounts", group: "Collateral and Control",
+        purpose: "First-priority security over the ABL priority collateral — receivables, inventory and the collection accounts — plus a floating charge, with the term lenders taking first priority over fixed assets.",
+        illustrative: "The Obligors grant first-priority Security over the ABL Priority Collateral (Receivables, Inventory, related books and records, and the Collection Accounts) and a floating charge over their other assets, ranking behind the Term Loan Security over the Term Priority Collateral.",
+        annotation: "The collateral split (ABL first on current assets, term first on fixed assets) is the heart of an ABL/term structure. Fixed-charge status over accounts needs real control (Spectrum).",
+        relatedClauses: ["cl:sec-accounts", "cl:sec-debenture"], relatedCases: ["case:spectrum"],
+      },
+      {
+        id: "sec:abl:05", no: "5", title: "Cash Dominion and Blocked Accounts", group: "Collateral and Control",
+        purpose: "Springing cash dominion — collections sweep to the lender's blocked account (via lockboxes / deposit account control agreements) on a trigger (availability falling below a threshold or an event of default).",
+        illustrative: "During a Cash Dominion Period (which commences if Availability is less than [X]% of the Commitments or an Event of Default occurs), all collections in the Blocked Accounts shall be swept daily to the Agent and applied to the Loans.",
+        annotation: "Springing (not permanent) cash dominion is market — full control only bites in stress. The DACA / lockbox mechanics are operationally critical.",
+        relatedClauses: ["cl:sec-accounts"], relatedCases: ["case:spectrum"],
+      },
+      {
+        id: "sec:abl:06", no: "6", title: "Field Examinations and Appraisals", group: "Collateral and Control",
+        purpose: "The lender's right to conduct periodic field exams of the collateral and inventory appraisals, more frequently when availability is low or a default exists, at the borrower's cost.",
+        illustrative: "The Agent may conduct [ ] field examinations and [ ] inventory appraisals in each year (and additional ones during a Cash Dominion Period or while an Event of Default is continuing), the cost of which shall be for the account of the Borrower.",
+        annotation: "Field exams and appraisals keep the borrowing base honest — a distinctive ABL feature. Frequency steps up with risk.",
+        relatedClauses: [], relatedCases: [],
+      },
+      {
+        id: "sec:abl:07", no: "7", title: "Springing Financial Covenant", group: "Covenants",
+        purpose: "A single springing fixed-charge coverage covenant, tested only when excess availability falls below a threshold — otherwise the facility is effectively covenant-light.",
+        illustrative: "If at any time Excess Availability is less than the greater of [X] and [10]% of the Commitments, the Borrower shall maintain a Fixed Charge Coverage Ratio of not less than 1.00:1, tested until Excess Availability has exceeded the threshold for [30] consecutive days.",
+        annotation: "The springing FCCR (triggered by low availability) is the standard ABL covenant — the collateral does the work, the covenant is a backstop.",
+        relatedClauses: ["cl:lev-covenants"], relatedCases: [],
+      },
+      {
+        id: "sec:abl:08", no: "8", title: "Representations, Reporting and Events of Default", group: "Representations, Undertakings and Events of Default",
+        purpose: "Representations and collateral reporting (the borrowing base certificate, ageings, inventory reports) and an EoD suite including borrowing-base and cash-dominion breaches.",
+        illustrative: "The Borrower shall deliver the Borrowing Base Certificate and supporting receivables ageings and inventory reports; an Event of Default includes an uncured Overadvance, failure to maintain the required reporting, or the springing covenant breach.",
+        annotation: "Reporting is more granular and frequent than cash-flow lending because availability depends on it.",
+        relatedClauses: ["cl:lev-reps", "cl:lev-info", "cl:lev-eod"], relatedCases: [],
+      },
+      {
+        id: "sec:abl:09", no: "9", title: "ABL / Term Loan Intercreditor", group: "Intercreditor",
+        purpose: "The split-lien intercreditor between the ABL and any term lenders — each has first priority over its priority collateral, with access rights and a standstill over the other's collateral.",
+        illustrative: "The ABL Lenders and the Term Lenders enter into an Intercreditor Agreement under which each has first priority over its Priority Collateral; the Term Agent's enforcement against ABL Priority Collateral is subject to a standstill and the ABL Agent's access rights to process inventory.",
+        annotation: "The ABL/term intercreditor (a US-style 'split collateral' ICA) differs from the senior/junior ICA — the two classes are pari but on different collateral. Access rights (to run down inventory) are keenly negotiated.",
+        relatedClauses: ["cl:ic-ranking", "cl:ic-enforcement"], relatedCases: [],
+      },
+      {
+        id: "sec:abl:10", no: "10", title: "Finance Parties, Changes and Governing Law", group: "Administration",
+        purpose: "Agency machinery, transfers, amendments, and English (or New York) governing law and jurisdiction.",
+        illustrative: "The Agent acts on Majority-Lender instructions; a Lender may transfer subject to the Company's consent while no Event of Default is continuing; this Agreement is governed by English law.",
+        annotation: "ABL is well developed in the US; the mechanics translate to English law with a debenture and account control. Governing law follows the collateral and market.",
+        relatedClauses: ["cl:lev-agency", "cl:lev-transfers"], relatedCases: ["case:gibbs"],
+      },
+    ],
+  },
+
+  // ============================================================
+  // 9. Fund Finance — Subscription (Capital Call) Facility
+  // ============================================================
+  {
+    id: "doc:subline",
+    area: "Fund Finance",
+    title: "Fund Finance — Subscription (Capital Call) Facility Agreement",
+    short: "Subscription Line",
+    summary:
+      "An illustrative model subscription (capital-call) facility for a closed-ended fund — a revolving facility secured not on the fund's assets but on the undrawn capital commitments of the investors, the general partner's right to call that capital, and the account into which it is funded; availability is driven by a borrowing base of 'included' investor commitments.",
+    sections: [
+      {
+        id: "sec:sub:01", no: "1", title: "Definitions and the Borrowing Base", group: "Interpretation",
+        purpose: "Defines the subscription-finance vocabulary — Capital Commitments, Uncalled Capital, Included and Excluded Investors, Advance Rates and the Borrowing Base of includible commitments.",
+        illustrative: "'Borrowing Base' means the aggregate of the Uncalled Capital Commitments of the Included Investors, each multiplied by the applicable Advance Rate for that Investor's rating category, subject to the Concentration Limits.",
+        annotation: "The credit is the investors' obligation to fund capital calls, not the fund's assets. Investor credit quality, 'included/excluded' status and concentration limits drive availability.",
+        relatedClauses: ["cl:sc-eligibility"], relatedCases: ["dev:fundfinance-docs"],
+      },
+      {
+        id: "sec:sub:02", no: "2", title: "The Facility and Purpose", group: "The Facility",
+        purpose: "A revolving facility used to bridge capital calls — funding investments and fund expenses ahead of drawing capital from investors — smoothing cash-flow and IRR timing.",
+        illustrative: "The Lenders make available a revolving facility to be applied towards making Portfolio Investments and paying Fund expenses pending the drawdown of Capital Commitments; each Loan is to be repaid from the proceeds of a Capital Call.",
+        annotation: "Subscription lines are short-term bridges repaid from capital calls; note the fund's own LPA limits on borrowing and the (often) 'clean-down' expectation.",
+        relatedClauses: [], relatedCases: ["dev:fundfinance-docs"],
+      },
+      {
+        id: "sec:sub:03", no: "3", title: "Conditions and the LPA", group: "The Facility",
+        purpose: "The conditions precedent — review of the limited partnership agreement (borrowing power, capital-call mechanics, overcall limitations) and delivery of investor consent letters / acknowledgements.",
+        illustrative: "It is a condition that the Agent has reviewed the LPA and is satisfied as to the Fund's power to borrow and to grant security over the Capital Commitments and Call Rights, and has received Investor Letters from Investors representing not less than [ ]% of Commitments.",
+        annotation: "The LPA is the foundational document — the lender must confirm borrowing power, the right to call capital to repay the loan, and any overcall/limitation provisions.",
+        relatedClauses: ["cl:lev-cp"], relatedCases: [],
+      },
+      {
+        id: "sec:sub:04", no: "4", title: "Security — Uncalled Commitments and Call Rights", group: "Security",
+        purpose: "Security over the fund's right to call capital, the investors' funding obligations, and the collateral account into which called capital is paid.",
+        illustrative: "The Fund and the General Partner grant Security over (a) the right to make Capital Calls and to receive Capital Contributions, (b) the Uncalled Capital Commitments, and (c) the Collateral Account into which Capital Contributions are funded.",
+        annotation: "This is the defining feature — you take security over the right to call capital and the account, not the underlying portfolio (contrast NAV facilities). Perfection of the assignment and account control are key.",
+        relatedClauses: ["cl:sec-accounts"], relatedCases: [],
+      },
+      {
+        id: "sec:sub:05", no: "5", title: "Capital Call Mechanics and Investor Letters", group: "Security",
+        purpose: "The lender's right, on an event of default, to issue capital calls directly to investors, supported by investor consent letters acknowledging the security and agreeing to fund without set-off or defence.",
+        illustrative: "Following an Event of Default, the Agent may exercise the Call Rights and issue Capital Calls directly to the Investors, who (pursuant to their Investor Letters) shall fund such calls into the Collateral Account without set-off, counterclaim or defence.",
+        annotation: "The enforceability of the direct-call right and the investor acknowledgements (no set-off/defence) are what make the security bankable — diligence them carefully.",
+        relatedClauses: [], relatedCases: ["dev:fundfinance-docs"],
+      },
+      {
+        id: "sec:sub:06", no: "6", title: "Representations and Coverage", group: "Representations, Undertakings and Events of Default",
+        purpose: "Representations (LPA in force, borrowing permitted, no undisclosed side letters cutting down commitments) and the coverage requirement that the loans not exceed the borrowing base.",
+        illustrative: "The Fund represents that the LPA is in full force, that borrowing and the grant of Security are permitted, and that no side letter materially adversely affects an Included Investor's obligation to fund; the Loans shall not at any time exceed the Borrowing Base.",
+        annotation: "Side letters can excuse or reduce an investor's obligation to fund calls (or exclude them from a call to repay debt) — a key diligence and representation point.",
+        relatedClauses: ["cl:lev-reps", "cl:sc-warehouse"], relatedCases: [],
+      },
+      {
+        id: "sec:sub:07", no: "7", title: "Information and Events of Default", group: "Representations, Undertakings and Events of Default",
+        purpose: "Reporting (investor reports, capital-account statements, notices of LPA amendments and defaulting or transferring investors) and an EoD suite tuned to the fund structure.",
+        illustrative: "The Fund shall notify the Agent of any LPA amendment, any Investor default or transfer, or any event affecting an Included Investor; an Event of Default includes a borrowing-base overadvance, a material LPA breach, the removal of the General Partner, or a key Investor ceasing to be an Included Investor.",
+        annotation: "GP removal, LPA amendment and investor default/transfer are the fund-specific risks the EoDs and reporting are built around.",
+        relatedClauses: ["cl:lev-info", "cl:lev-eod"], relatedCases: ["dev:navfinance-issues"],
+      },
+      {
+        id: "sec:sub:08", no: "8", title: "Finance Parties, Changes and Governing Law", group: "Administration",
+        purpose: "Agency machinery, transfer provisions, amendments, and English governing law and jurisdiction.",
+        illustrative: "The Agent acts on Majority-Lender instructions; a Lender may transfer subject to the Fund's consent while no Event of Default is continuing; this Agreement is governed by English law.",
+        annotation: "Subscription lines are heavily relationship- and structure-driven; the LPA and investor base, not the boilerplate, are where the work is. Contrast NAV facilities, secured on the portfolio itself.",
+        relatedClauses: ["cl:lev-agency", "cl:lev-transfers"], relatedCases: ["dev:navfinance-issues"],
+      },
+    ],
+  },
 ];

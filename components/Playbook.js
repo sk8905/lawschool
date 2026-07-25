@@ -7,6 +7,7 @@ import { SAMPLES } from "../data/samples.js";
 import { CASES } from "../data/cases.js";
 import { TASKS } from "../data/plan.js";
 import { useOverlay, useCustom, usePref, KEYS } from "../lib/store.js";
+import { downloadPlaybookWord } from "../lib/wordexport.js";
 import { Chip, LinkChip, Notes, Accordion, Empty } from "./Shared.js";
 
 const caseById = Object.fromEntries(CASES.map((c) => [c.id, c]));
@@ -54,6 +55,11 @@ export function Playbook({ navigate, search, focusId, clearFocus }) {
           <p class="lede">Clause-by-clause: purpose, the borrower ask, the lender pushback, where it sits in the market, and your drafting notes. Use your browser's print to export a clean handout.</p>
         </div>
         <div class="head-actions no-print">
+          <button class="btn" onClick=${() => {
+            const title = searching ? `Playbook — "${q}"` : (DOCS.find((d) => d.id === activeDoc) || {}).title || "Playbook";
+            const items = filtered.map((c) => ({ ...c, wording: c.sample || SAMPLES[c.id] }));
+            downloadPlaybookWord(title, items);
+          }}>⬇ Word</button>
           <button class="btn" onClick=${() => window.print()}>⎙ Print</button>
           <button class="btn btn-primary" onClick=${() => setShowAdd((s) => !s)}>${showAdd ? "Close" : "+ Add clause"}</button>
         </div>
