@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
     <title>Law School</title>
     <meta name="description" content="A 12-week finance-law refresher: study plan, case-law tracker and drafting playbook. Local-first, zero-build." />
     <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
@@ -407,6 +407,27 @@
     <div id="root">
       <noscript>This app needs JavaScript. It runs entirely in your browser — nothing is sent anywhere.</noscript>
     </div>
+    <script>
+      // Disable all zoom. The viewport meta (maximum-scale=1, user-scalable=no)
+      // covers Android/desktop, but iOS Safari ignores it — so also block its
+      // pinch (gesture*) events, trackpad/ctrl+wheel zoom, and keyboard zoom.
+      (function () {
+        var stop = function (e) { e.preventDefault(); };
+        ["gesturestart", "gesturechange", "gestureend"].forEach(function (t) {
+          document.addEventListener(t, stop, { passive: false });
+        });
+        // ctrl/⌘ + wheel = pinch-zoom on trackpads and desktop browsers
+        document.addEventListener("wheel", function (e) {
+          if (e.ctrlKey || e.metaKey) e.preventDefault();
+        }, { passive: false });
+        // ctrl/⌘ + (+ / - / = / 0) keyboard zoom
+        document.addEventListener("keydown", function (e) {
+          if ((e.ctrlKey || e.metaKey) && ["+", "-", "=", "0"].indexOf(e.key) !== -1) e.preventDefault();
+        }, { passive: false });
+        // Note: double-tap-to-zoom is already handled by touch-action:
+        // manipulation (global), so no touchend hack that could break taps.
+      })();
+    </script>
     <script type="module" src="./app.js"></script>
   </body>
 </html>
