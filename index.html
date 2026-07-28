@@ -380,7 +380,7 @@
 
       /* ---- responsive ---- */
       @media (max-width: 860px) {
-        .dash-cols, .stat-row, .ask-grid, .kanban { grid-template-columns: 1fr; }
+        .dash-cols, .ask-grid, .kanban { grid-template-columns: 1fr; }
         .playbook { grid-template-columns: 1fr; }
         .doc-rail { flex-direction: row; flex-wrap: wrap; position: static; }
         .tabs { display: none; }
@@ -388,6 +388,18 @@
         /* show the bottom tab bar and reserve space so it doesn't cover content */
         .tabbar { display: flex; }
         .app { padding-bottom: calc(54px + env(safe-area-inset-bottom)); }
+      }
+
+      /* ---- phone tuning ---- */
+      @media (max-width: 560px) {
+        .main { padding: 18px 14px 40px; }
+        /* keep the three stat cards on one row, compact so they fit an iPhone */
+        .stat-row { grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
+        .stat { padding: 12px 10px; border-radius: 10px; }
+        .stat-num { font-size: 26px; }
+        .stat-den { font-size: 13px; }
+        .stat-label { font-size: 12px; margin-top: 4px; line-height: 1.2; }
+        .stat-sub { font-size: 10.5px; line-height: 1.25; }
       }
 
       /* ---- print (playbook handout / PDF export) ---- */
