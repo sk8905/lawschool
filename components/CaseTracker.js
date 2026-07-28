@@ -1,6 +1,6 @@
 // components/CaseTracker.js — Module 2: case law & market/regulatory tracker.
 // Filterable list with facets (type/category), search, read/unread, add-entry.
-import { html, useMemo, useState, useEffect, useRef } from "../lib/preact.js";
+import { html, useMemo, useState, useEffect } from "../lib/preact.js";
 import { CASES, CATEGORIES } from "../data/cases.js";
 import { CLAUSES } from "../data/playbook.js";
 import { useOverlay, useCustom, usePref, KEYS } from "../lib/store.js";

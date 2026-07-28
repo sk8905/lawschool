@@ -1,0 +1,26 @@
+name: Code audit
+
+# Runs the integrity audit every day at 05:00 Europe/Dublin and on every push /
+# PR to main. GitHub cron is UTC-only, so 04:00 UTC == 05:00 Irish Summer Time
+# (and 04:00 in winter — bump to "0 5 * * *" if you want 05:00 year-round).
+on:
+  schedule:
+    - cron: "0 4 * * *"
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      # No dependencies needed — the audit is dependency-free and reads the
+      # committed data/lib modules directly.
+      - name: Run content & wiring audit
+        run: node scripts/audit.mjs

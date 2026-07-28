@@ -2,10 +2,12 @@
   "name": "lawschool",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "Law School — Cloudflare Worker (app + cross-device sync API)",
   "scripts": {
     "deploy": "wrangler deploy",
-    "dev": "wrangler dev"
+    "dev": "wrangler dev",
+    "audit": "node scripts/audit.mjs"
   },
   "devDependencies": {
     "wrangler": "^3.114.0"

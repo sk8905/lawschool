@@ -1,5 +1,5 @@
 // app.js — shell: hash router, tabs, global search, dashboard, export/import.
-import { html, render, useState, useEffect, useMemo, useCallback } from "./lib/preact.js";
+import { html, render, useState, useEffect, useCallback } from "./lib/preact.js";
 
 import { WORKSTREAMS, TASKS } from "./data/plan.js";
 import { CASES } from "./data/cases.js";
@@ -236,7 +236,9 @@ function Dashboard({ navigate }) {
   const priority = CASES.filter((c) => (c.category || []).includes("Restructuring / Part 26A"));
   const priorityRead = priority.filter((c) => cases[c.id]?.read).length;
 
-  const clauseCount = CLAUSES.length + (custom.clauses || []).length;
+  const allClauses = [...CLAUSES, ...(custom.clauses || [])];
+  const clauseCount = allClauses.length;
+  const docTypeCount = new Set(allClauses.map((c) => c.doc)).size;
 
   // next up: earliest week with an unfinished task
   const nextTasks = taskRows
@@ -268,7 +270,7 @@ function Dashboard({ navigate }) {
         <button class="stat" onClick=${() => navigate("playbook")}>
           <div class="stat-num">${clauseCount}</div>
           <div class="stat-label">Playbook clauses</div>
-          <div class="stat-sub">across 5 document types</div>
+          <div class="stat-sub">across ${docTypeCount} document types</div>
         </button>
       </div>
 

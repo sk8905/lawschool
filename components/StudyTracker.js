@@ -6,7 +6,7 @@ import { CASES } from "../data/cases.js";
 import { CLAUSES } from "../data/playbook.js";
 import { useOverlay, usePref, KEYS } from "../lib/store.js";
 import { downloadPlanWord } from "../lib/wordexport.js";
-import { ProgressBar, Chip, LinkChip, Notes, Accordion, Empty } from "./Shared.js";
+import { ProgressBar, Chip, LinkChip, Notes, Empty } from "./Shared.js";
 
 const STATUSES = [
   { id: "todo", label: "To do" },
