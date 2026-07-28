@@ -73,7 +73,7 @@ export function StudyTracker({ navigate, search, focusId, clearFocus }) {
             const items = [...filtered]
               .sort((a, b) => a.workstream.localeCompare(b.workstream) || a.week - b.week)
               .map((t) => ({ group: `${t.workstream} — ${(wsById[t.workstream] || {}).title || ""}`, week: t.week, effort: t.effort, title: t.title, detail: t.detail, resources: t.resources }));
-            downloadPlanWord("Finance Law Refresher — 12-Week Study Plan", items);
+            downloadPlanWord("Law School — 12-Week Study Plan", items);
           }}>⬇ Word</button>
         </div>
       </div>

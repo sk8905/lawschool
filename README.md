@@ -1,4 +1,4 @@
-# Finance Law Refresher
+# Law School
 
 A single-page app to run a 12-week finance-law refresher — for moving back into
 private practice as a finance partner after time in-house. It combines three tools:

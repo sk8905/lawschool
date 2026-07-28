@@ -72,9 +72,9 @@ function App() {
     <div class="app">
       <header class="topbar no-print">
         <div class="brand" onClick=${() => navigate("dashboard")}>
-          <img class="brand-mark" src="assets/logo.svg" alt="Finance Law Refresher logo" width="34" height="34" />
+          <img class="brand-mark" src="assets/logo.svg" alt="Law School logo" width="34" height="34" />
           <div>
-            <div class="brand-title">Finance Law Refresher</div>
+            <div class="brand-title">Law School</div>
             <div class="brand-sub">Study · Case law · Playbook</div>
           </div>
         </div>
