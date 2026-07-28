@@ -251,7 +251,6 @@ function Dashboard({ navigate }) {
       <div class="module-head">
         <div>
           <h2>Dashboard</h2>
-          <p class="lede">A 12-week refresher for the move back to private practice as a finance partner — re-acquiring the drafting seat and product breadth, kept current against the last five years of law.</p>
         </div>
       </div>
 
