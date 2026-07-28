@@ -1,0 +1,16 @@
+{
+  "name": "Finance Law Refresher",
+  "short_name": "Law Refresher",
+  "description": "A finance-law refresher: study plan, case-law tracker, drafting playbook and model documents.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#f6f7f9",
+  "theme_color": "#2f4a6f",
+  "icons": [
+    { "src": "assets/logo.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any" },
+    { "src": "assets/icon-192.png", "type": "image/png", "sizes": "192x192", "purpose": "any" },
+    { "src": "assets/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any" },
+    { "src": "assets/apple-touch-icon.png", "type": "image/png", "sizes": "180x180", "purpose": "maskable" }
+  ]
+}

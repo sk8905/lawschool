@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Finance Law Refresher</title>
     <meta name="description" content="A 12-week finance-law refresher: study plan, case-law tracker and drafting playbook. Local-first, zero-build." />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232f4a6f'/%3E%3Ctext x='16' y='23' font-size='20' font-family='Georgia,serif' font-weight='700' fill='white' text-anchor='middle'%3E%C2%A7%3C/text%3E%3C/svg%3E"
-    />
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#2f4a6f" />
 
     <!--
       Zero-build single-page app. No npm, no bundler, no transpile, no network.
@@ -75,9 +76,8 @@
       .brand { display: flex; align-items: center; gap: 10px; cursor: pointer; }
       .brand-mark {
         width: 34px; height: 34px; border-radius: 8px;
-        display: grid; place-items: center;
-        background: var(--accent); color: #fff;
-        font-family: var(--serif); font-size: 20px; font-weight: 700;
+        display: block; object-fit: contain;
+        box-shadow: 0 1px 2px rgba(20, 30, 45, 0.18);
       }
       .brand-title { font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
       .brand-sub { font-size: 11px; color: var(--ink-faint); }
