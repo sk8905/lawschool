@@ -31,9 +31,32 @@ export default {
       );
     }
     // everything else is the static SPA
-    return env.ASSETS.fetch(request);
+    return serveAsset(request, env);
   },
 };
+
+// Serve a static asset, forcing revalidation on the app shell and code
+// (HTML/CSS/JS) so a new deploy is never masked by a stale cache — iOS
+// "Add to Home Screen" apps pin old files hard. Images, fonts and the manifest
+// keep their default caching. The ETag added by the assets runtime is preserved
+// (we copy all headers), so unchanged files still come back as a cheap 304.
+// A _headers file applies the same rule at the asset layer as a belt-and-braces.
+export async function serveAsset(request, env) {
+  const res = await env.ASSETS.fetch(request);
+  const path = new URL(request.url).pathname.toLowerCase();
+  const type = (res.headers.get("content-type") || "").toLowerCase();
+  const revalidate =
+    path === "/" ||
+    path.endsWith("/") ||
+    /\.(html|css|js|mjs)$/.test(path) ||
+    type.includes("text/html") ||
+    type.includes("text/css") ||
+    type.includes("javascript");
+  if (!revalidate) return res;
+  const headers = new Headers(res.headers); // preserves ETag, content-type, etc.
+  headers.set("Cache-Control", "no-cache, must-revalidate");
+  return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
+}
 
 async function handleApi(request, env, url) {
   let email;

@@ -1,0 +1,19 @@
+# Cloudflare static-assets header rules.
+#
+# Force revalidation of the app shell and all code so a freshly deployed version
+# is never masked by a stale cache — iOS "Add to Home Screen" web apps in
+# particular pin old files hard. The assets runtime still sends an ETag with
+# each file, so an unchanged file revalidates cheaply as a 304.
+#
+# Images, fonts and the web manifest are intentionally left on their defaults.
+
+/
+  Cache-Control: no-cache, must-revalidate
+/*.html
+  Cache-Control: no-cache, must-revalidate
+/*.css
+  Cache-Control: no-cache, must-revalidate
+/*.js
+  Cache-Control: no-cache, must-revalidate
+/*.mjs
+  Cache-Control: no-cache, must-revalidate
