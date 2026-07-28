@@ -21,6 +21,18 @@ const TABS = [
   { id: "documents", label: "Documents" },
 ];
 
+// 22px line icons (currentColor) for the bottom tab bar — icon over label.
+const svg = (paths) =>
+  html`<svg class="tabbar-icon" viewBox="0 0 24 24" width="22" height="22" fill="none"
+    stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
+const TAB_ICONS = {
+  dashboard: () => svg(html`<rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" /><rect x="3" y="14" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" />`),
+  plan: () => svg(html`<rect x="5" y="4" width="14" height="17" rx="2" /><path d="M9 4h6v3H9z" /><path d="M8.5 12.5l1.8 1.8 3.7-4" />`),
+  cases: () => svg(html`<path d="M12 4v16" /><path d="M6 20h12" /><path d="M5 7h14" /><path d="M5 7l-2.4 5a2.6 2.6 0 004.8 0z" /><path d="M19 7l-2.4 5a2.6 2.6 0 004.8 0z" />`),
+  playbook: () => svg(html`<path d="M12 7c-2-1.3-5-1.3-8 0v11c3-1.3 6-1.3 8 0 2-1.3 5-1.3 8 0V7c-3-1.3-6-1.3-8 0z" /><path d="M12 7v11" />`),
+  documents: () => svg(html`<path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z" /><path d="M14 3v5h5" /><path d="M9 13h6M9 17h6" />`),
+};
+
 function parseHash() {
   // #plan  or  #cases/case:petrofac  (tab / focusId)
   const raw = (location.hash || "#dashboard").replace(/^#/, "");
@@ -102,6 +114,22 @@ function App() {
         <${SyncStatus} sync=${sync} />
         <${DataControls} />
       </footer>
+
+      <nav class="tabbar no-print">
+        ${TABS.map(
+          (t) => html`
+            <button
+              class=${`tabbar-item${tab === t.id ? " tabbar-on" : ""}`}
+              onClick=${() => navigate(t.id)}
+              aria-label=${t.label}
+              aria-current=${tab === t.id ? "page" : undefined}
+            >
+              ${(TAB_ICONS[t.id] || (() => null))()}
+              <span class="tabbar-label">${t.label}</span>
+            </button>
+          `
+        )}
+      </nav>
 
       ${showSearch && html`<${GlobalSearch} onClose=${() => setShowSearch(false)} navigate=${navigate} />`}
     </div>

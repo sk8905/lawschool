@@ -90,6 +90,28 @@
       .tab-on { background: var(--accent); color: #fff; }
       .tab-on:hover { background: var(--accent); color: #fff; }
       .topbar-right { margin-left: auto; }
+
+      /* ---- bottom tab bar (mobile) ---- */
+      .tabbar {
+        display: none; /* only shown on narrow screens (see responsive) */
+        position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+        width: 100%;
+        padding: 6px 0;
+        padding-bottom: calc(6px + env(safe-area-inset-bottom));
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: saturate(1.4) blur(8px);
+        border-top: 1px solid var(--line);
+      }
+      .tabbar-item {
+        flex: 1 1 0; min-width: 0; min-height: 42px;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        gap: 2px;
+        border: 0; background: transparent; padding: 0;
+        color: var(--ink-faint);
+      }
+      .tabbar-icon { display: block; width: 22px; height: 22px; }
+      .tabbar-label { font-size: 0.58rem; font-weight: 600; line-height: 1; letter-spacing: 0.01em; }
+      .tabbar-on { color: var(--accent); }
       .search {
         width: 240px; max-width: 40vw;
         padding: 8px 12px; border: 1px solid var(--line-strong);
@@ -360,6 +382,9 @@
         .doc-rail { flex-direction: row; flex-wrap: wrap; position: static; }
         .tabs { display: none; }
         .topbar { flex-wrap: wrap; }
+        /* show the bottom tab bar and reserve space so it doesn't cover content */
+        .tabbar { display: flex; }
+        .app { padding-bottom: calc(54px + env(safe-area-inset-bottom)); }
       }
 
       /* ---- print (playbook handout / PDF export) ---- */
